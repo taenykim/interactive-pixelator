@@ -1,0 +1,52 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.upload-wrapper {
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-label {
+  position: relative;
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-description {
+  text-align: center;
+}
+
+.upload-imgBtn {
+  width: 80%;
+  opacity: 0.2;
+  cursor: pointer;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+.image-preview {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+}
+
+.img-item {
+  margin-top: 10px;
+  box-shadow: 0 14px 24px 0 rgba(186, 188, 191, 0.5);
+}
