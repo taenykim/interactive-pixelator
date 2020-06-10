@@ -1,6 +1,6 @@
 import React from "react";
 
-const UploadContainer = ({ updateCanvasData }) => {
+const UploadContainer = ({ updateImageData }) => {
   const handleImage = (e) => {
     const reader = new FileReader();
 
@@ -9,7 +9,7 @@ const UploadContainer = ({ updateCanvasData }) => {
       img.src = event.target.result;
 
       img.onload = () => {
-        updateCanvasData(img);
+        updateImageData(img);
       };
     };
     reader.readAsDataURL(e.target.files[0]);
