@@ -1,13 +1,8 @@
 export const resizeImage = (image) => {
-  let MAX_WIDTH = 500;
-  let MAX_HEIGHT = 300;
+  let MAX_WIDTH = document.getElementById("canvas-container").getBoundingClientRect().width - 1;
+  let MAX_HEIGHT = document.getElementById("canvas-container").getBoundingClientRect().height - 1;
   let width = image.width;
   let height = image.height;
-
-  // 이미지가 아트보드 가로,세로보다 작을 경우, 원본 사이즈로 리턴
-  if (width < MAX_WIDTH && height < MAX_HEIGHT) {
-    return [width, height];
-  }
 
   // 아트보드 가로세로 비율
   const artboardRatio = MAX_WIDTH / MAX_HEIGHT;

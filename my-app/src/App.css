@@ -6,7 +6,7 @@
   height: 100vh;
 }
 
-.upload-wrapper {
+#upload-wrapper {
   border: 1px solid black;
   width: 90%;
   height: 90%;
@@ -25,6 +25,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .upload-description {
@@ -34,16 +35,20 @@
 .upload-imgBtn {
   width: 80%;
   opacity: 0.2;
-  cursor: pointer;
   padding-bottom: 20px;
   margin-top: 20px;
 }
 
-.image-preview {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
+#canvas-container {
+  position: relative;
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .img-item {
