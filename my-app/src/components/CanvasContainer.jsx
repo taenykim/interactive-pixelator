@@ -2,11 +2,13 @@ import React from "react";
 import { useEffect } from "react";
 import { resizeImage } from "../utils/resizeImage";
 
+const dataOffset = 4; // we can set how many pixels to skip
+
 const CanvasContainer = ({ image }) => {
   let canvas;
 
+  // consider useEffect order
   useEffect(() => {
-    console.log("2");
     canvas = document.createElement("canvas");
     let canvasContainer = document.getElementById("canvas-container");
     canvasContainer.append(canvas);
@@ -14,87 +16,103 @@ const CanvasContainer = ({ image }) => {
   }, [image]);
 
   useEffect(() => {
-    console.log("1");
     window.addEventListener("resize", () => {
       drawCanvas(canvas);
     });
-  }, []);
+  }, [canvas]);
 
   const drawCanvas = (canvas) => {
     const ctx = canvas.getContext("2d");
+    // ctx.clearRect(0, 0, 0, 0);
     const [width, height] = resizeImage(image);
-    canvas.width = width;
-    canvas.height = height;
-    var tileWidth = 100;
-    var tileHeight = 100;
-    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    var pixels = imageData.data;
-    var numTileRows = canvas.width / tileWidth;
-    var numTileCols = canvas.height / tileHeight;
+    canvas.width = Math.floor(width);
+    canvas.height = Math.floor(height);
+    const tileSize = 100;
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const pixels = imageData.data;
+    // console.log(pixels);
+    const numTileRows = Math.ceil(canvas.height / tileSize);
+    const numTileCols = Math.ceil(canvas.width / tileSize);
     //canvas copy of image
     ctx.drawImage(image, 0, 0, width, height);
     function averageColor(row, column) {
-      var blockSize = 1, // we can set how many pixels to skip
-        data,
-        width,
-        height,
-        i = -4,
-        length,
-        rgb = {
-          r: 0,
-          g: 0,
-          b: 0,
-        },
-        count = 0;
+      const rgb = {
+        r: 0,
+        g: 0,
+        b: 0,
+      };
+      let data;
 
       try {
-        data = ctx.getImageData(column * tileWidth, row * tileHeight, tileHeight, tileWidth);
+        data = ctx.getImageData(column * tileSize, row * tileSize, tileSize, tileSize);
       } catch (e) {
-        console.log("Not happening this time!");
         return rgb;
       }
 
-      length = data.data.length;
+      const length = data.data.length;
+      let count = 0;
 
-      while ((i += blockSize * 4) < length) {
-        ++count;
+      for (let i = 0; i < length; i += dataOffset, count++) {
         rgb.r += data.data[i];
         rgb.g += data.data[i + 1];
         rgb.b += data.data[i + 2];
       }
 
       // ~~ used to floor values
-      rgb.r = ~~(rgb.r / count);
-      rgb.g = ~~(rgb.g / count);
-      rgb.b = ~~(rgb.b / count);
+      rgb.r = Math.floor(rgb.r / count);
+      rgb.g = Math.floor(rgb.g / count);
+      rgb.b = Math.floor(rgb.b / count);
 
       return rgb;
     }
 
+    // console.log("row개수", numTileRows, "col개수", numTileCols);
+
     // Loop through each tile
-    for (var r = 0; r < numTileRows; r++) {
-      for (var c = 0; c < numTileCols; c++) {
+    for (let r = 0; r < numTileRows; r++) {
+      for (let c = 0; c < numTileCols; c++) {
         // Set the pixel values for each tile
-        var rgb = averageColor(r, c);
-        var red = rgb.r;
-        var green = rgb.g;
-        var blue = rgb.b;
+        const rgb = averageColor(r, c);
+        const red = rgb.r;
+        const green = rgb.g;
+        const blue = rgb.b;
 
         // Loop through each tile pixel
-        for (var tr = 0; tr < tileHeight; tr++) {
-          for (var tc = 0; tc < tileWidth; tc++) {
-            // Calculate the true position of the tile pixel
-            var trueRow = r * tileHeight + tr;
-            var trueCol = c * tileWidth + tc;
+        if (c === numTileCols - 1) {
+          for (let tr = 0; tr < tileSize; tr++) {
+            for (let tc = 0; tc < canvas.width - c * tileSize; tc++) {
+              // Calculate the true position of the tile pixel
+              const trueRow = r * tileSize + tr;
+              const trueCol = c * tileSize + tc;
 
-            // Calculate the position of the current pixel in the array
-            var pos = trueRow * (imageData.width * 4) + trueCol * 4;
+              // Calculate the position of the current pixel in the array
+              const position = trueRow * (imageData.width * dataOffset) + trueCol * dataOffset;
 
-            // Assign the colour to each pixel
-            pixels[pos + 0] = red;
-            pixels[pos + 1] = green;
-            pixels[pos + 2] = blue;
-            pixels[pos + 3] = 255;
+              // console.log("position", position);
+              // Assign the colour to each pixel
+              pixels[position + 0] = red;
+              pixels[position + 1] = green;
+              pixels[position + 2] = blue;
+              pixels[position + 3] = 255;
+            }
+          }
+        } else {
+          for (let tr = 0; tr < tileSize; tr++) {
+            for (let tc = 0; tc < tileSize; tc++) {
+              // Calculate the true position of the tile pixel
+              const trueRow = r * tileSize + tr;
+              const trueCol = c * tileSize + tc;
+
+              // Calculate the position of the current pixel in the array
+              const position = trueRow * (imageData.width * dataOffset) + trueCol * dataOffset;
+
+              // console.log("position", position);
+              // Assign the colour to each pixel
+              pixels[position + 0] = red;
+              pixels[position + 1] = green;
+              pixels[position + 2] = blue;
+              pixels[position + 3] = 255;
+            }
           }
         }
       }
