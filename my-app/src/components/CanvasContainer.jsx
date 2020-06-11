@@ -4,9 +4,9 @@ import { resizeImage } from "../utils/resizeImage";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
-const CanvasContainer = ({ image, pixelSize }) => {
+const CanvasContainer = ({ image, pixelSize, gridSize }) => {
   let canvas;
-  console.log(pixelSize);
+  console.log(gridSize);
 
   // consider useEffect order
   useEffect(() => {
@@ -14,22 +14,21 @@ const CanvasContainer = ({ image, pixelSize }) => {
     canvas.id = "canvas";
     let canvasContainer = document.getElementById("canvas-container");
     canvasContainer.append(canvas);
-    drawCanvas(canvas, pixelSize);
+    drawCanvas(canvas, pixelSize, gridSize);
   }, [image]);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      drawCanvas(canvas, pixelSize);
+      drawCanvas(canvas, pixelSize, gridSize);
     });
-  }, [canvas]);
+  }, [canvas, pixelSize, gridSize]);
 
   useEffect(() => {
     canvas = document.querySelector("#canvas");
-    console.log(canvas, pixelSize);
-    drawCanvas(canvas, pixelSize);
-  }, [pixelSize]);
+    drawCanvas(canvas, pixelSize, gridSize);
+  }, [pixelSize, gridSize]);
 
-  const drawCanvas = (canvas, pixelSize) => {
+  const drawCanvas = (canvas, pixelSize, gridSize) => {
     const ctx = canvas.getContext("2d");
     // ctx.clearRect(0, 0, 0, 0);
     const [width, height] = resizeImage(image);
@@ -44,7 +43,7 @@ const CanvasContainer = ({ image, pixelSize }) => {
     //canvas copy of image
     ctx.drawImage(image, 0, 0, width, height);
 
-    const gridSize = 5;
+    const grid = gridSize;
     function averageColor(row, column) {
       const rgb = {
         r: 0,
@@ -100,7 +99,7 @@ const CanvasContainer = ({ image, pixelSize }) => {
 
               // console.log("position", position);
               // Assign the colour to each pixel
-              if (tc < gridSize || tr < gridSize || tc > canvas.width - c * tileSize - gridSize || tr > canvas.height - r * tileSize - gridSize) {
+              if (tc < grid || tr < grid || tc > canvas.width - c * tileSize - grid || tr > canvas.height - r * tileSize - grid) {
                 pixels[position + 0] = 1;
                 pixels[position + 1] = 1;
                 pixels[position + 2] = 1;
@@ -125,7 +124,7 @@ const CanvasContainer = ({ image, pixelSize }) => {
 
               // console.log("position", position);
               // Assign the colour to each pixel
-              if (tc < gridSize || tr < gridSize || tr > canvas.height - r * tileSize - gridSize) {
+              if (tc < grid || tr < grid || tr > canvas.height - r * tileSize - grid) {
                 pixels[position + 0] = 1;
                 pixels[position + 1] = 1;
                 pixels[position + 2] = 1;
