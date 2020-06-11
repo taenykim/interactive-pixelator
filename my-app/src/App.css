@@ -55,3 +55,11 @@
   margin-top: 10px;
   box-shadow: 0 14px 24px 0 rgba(186, 188, 191, 0.5);
 }
+
+#color {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: 100px;
+}
