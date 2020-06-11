@@ -35,6 +35,8 @@ const CanvasContainer = ({ image }) => {
     const numTileCols = Math.ceil(canvas.width / tileSize);
     //canvas copy of image
     ctx.drawImage(image, 0, 0, width, height);
+
+    const gridSize = 5;
     function averageColor(row, column) {
       const rgb = {
         r: 0,
@@ -90,10 +92,17 @@ const CanvasContainer = ({ image }) => {
 
               // console.log("position", position);
               // Assign the colour to each pixel
-              pixels[position + 0] = red;
-              pixels[position + 1] = green;
-              pixels[position + 2] = blue;
-              pixels[position + 3] = 255;
+              if (tc < gridSize || tr < gridSize || tc > canvas.width - c * tileSize - gridSize || tr > canvas.height - r * tileSize - gridSize) {
+                pixels[position + 0] = 1;
+                pixels[position + 1] = 1;
+                pixels[position + 2] = 1;
+                pixels[position + 3] = 255;
+              } else {
+                pixels[position + 0] = red;
+                pixels[position + 1] = green;
+                pixels[position + 2] = blue;
+                pixels[position + 3] = 255;
+              }
             }
           }
         } else {
@@ -108,10 +117,17 @@ const CanvasContainer = ({ image }) => {
 
               // console.log("position", position);
               // Assign the colour to each pixel
-              pixels[position + 0] = red;
-              pixels[position + 1] = green;
-              pixels[position + 2] = blue;
-              pixels[position + 3] = 255;
+              if (tc < gridSize || tr < gridSize || tr > canvas.height - r * tileSize - gridSize) {
+                pixels[position + 0] = 1;
+                pixels[position + 1] = 1;
+                pixels[position + 2] = 1;
+                pixels[position + 3] = 255;
+              } else {
+                pixels[position + 0] = red;
+                pixels[position + 1] = green;
+                pixels[position + 2] = blue;
+                pixels[position + 3] = 255;
+              }
             }
           }
         }
