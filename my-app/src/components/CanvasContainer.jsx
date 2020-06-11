@@ -4,30 +4,38 @@ import { resizeImage } from "../utils/resizeImage";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
-const CanvasContainer = ({ image }) => {
+const CanvasContainer = ({ image, pixelSize }) => {
   let canvas;
+  console.log(pixelSize);
 
   // consider useEffect order
   useEffect(() => {
     canvas = document.createElement("canvas");
+    canvas.id = "canvas";
     let canvasContainer = document.getElementById("canvas-container");
     canvasContainer.append(canvas);
-    drawCanvas(canvas);
+    drawCanvas(canvas, pixelSize);
   }, [image]);
 
   useEffect(() => {
     window.addEventListener("resize", () => {
-      drawCanvas(canvas);
+      drawCanvas(canvas, pixelSize);
     });
   }, [canvas]);
 
-  const drawCanvas = (canvas) => {
+  useEffect(() => {
+    canvas = document.querySelector("#canvas");
+    console.log(canvas, pixelSize);
+    drawCanvas(canvas, pixelSize);
+  }, [pixelSize]);
+
+  const drawCanvas = (canvas, pixelSize) => {
     const ctx = canvas.getContext("2d");
     // ctx.clearRect(0, 0, 0, 0);
     const [width, height] = resizeImage(image);
     canvas.width = Math.floor(width);
     canvas.height = Math.floor(height);
-    const tileSize = 100;
+    const tileSize = pixelSize;
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     const pixels = imageData.data;
     // console.log(pixels);
