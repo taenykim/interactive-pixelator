@@ -1,10 +1,10 @@
 import { resizeImage } from "../utils/resizeImage";
 import { averageColor } from "./averageColor";
-import { pickColor } from "./pickColor";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
 export const drawCanvas = (canvas, image, pixelSize, gridSize) => {
+  console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
   const [width, height] = resizeImage(image);
   canvas.width = Math.floor(width);
@@ -84,6 +84,4 @@ export const drawCanvas = (canvas, image, pixelSize, gridSize) => {
 
   // Draw image data to the canvas
   ctx.putImageData(imageData, 0, 0);
-
-  canvas.addEventListener("mousemove", pickColor);
 };
