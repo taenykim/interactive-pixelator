@@ -1,6 +1,6 @@
 # Interactive pixelator
 
-upload image and make interactive pixel art
+🌇 🌃 upload image and make interactive pixel art 🕹
 
 ## Feature
 
