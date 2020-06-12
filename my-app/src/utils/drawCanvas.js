@@ -1,0 +1,89 @@
+import { resizeImage } from "../utils/resizeImage";
+import { averageColor } from "./averageColor";
+import { pickColor } from "./pickColor";
+
+const dataOffset = 4; // we can set how many pixels to skip
+
+export const drawCanvas = (canvas, image, pixelSize, gridSize) => {
+  const ctx = canvas.getContext("2d");
+  const [width, height] = resizeImage(image);
+  canvas.width = Math.floor(width);
+  canvas.height = Math.floor(height);
+  const tileSize = pixelSize;
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const pixels = imageData.data;
+  const numTileRows = Math.ceil(canvas.height / tileSize);
+  const numTileCols = Math.ceil(canvas.width / tileSize);
+  ctx.drawImage(image, 0, 0, width, height);
+
+  const grid = gridSize;
+
+  // Loop through each tile
+  for (let r = 0; r < numTileRows; r++) {
+    for (let c = 0; c < numTileCols; c++) {
+      // Set the pixel values for each tile
+      const rgb = averageColor(r, c, ctx, tileSize, dataOffset);
+      const red = rgb.r;
+      const green = rgb.g;
+      const blue = rgb.b;
+
+      // Loop through each tile pixel
+      if (c === numTileCols - 1) {
+        for (let tr = 0; tr < tileSize; tr++) {
+          for (let tc = 0; tc < canvas.width - c * tileSize; tc++) {
+            // Calculate the true position of the tile pixel
+            const trueRow = r * tileSize + tr;
+            const trueCol = c * tileSize + tc;
+
+            // Calculate the position of the current pixel in the array
+            const position = trueRow * (imageData.width * dataOffset) + trueCol * dataOffset;
+
+            // console.log("position", position);
+            // Assign the colour to each pixel
+            if (tc < grid || tr < grid || tc > canvas.width - c * tileSize - grid || tr > canvas.height - r * tileSize - grid) {
+              pixels[position + 0] = 1;
+              pixels[position + 1] = 1;
+              pixels[position + 2] = 1;
+              pixels[position + 3] = 255;
+            } else {
+              pixels[position + 0] = red;
+              pixels[position + 1] = green;
+              pixels[position + 2] = blue;
+              pixels[position + 3] = 255;
+            }
+          }
+        }
+      } else {
+        for (let tr = 0; tr < tileSize; tr++) {
+          for (let tc = 0; tc < tileSize; tc++) {
+            // Calculate the true position of the tile pixel
+            const trueRow = r * tileSize + tr;
+            const trueCol = c * tileSize + tc;
+
+            // Calculate the position of the current pixel in the array
+            const position = trueRow * (imageData.width * dataOffset) + trueCol * dataOffset;
+
+            // console.log("position", position);
+            // Assign the colour to each pixel
+            if (tc < grid || tr < grid || tr > canvas.height - r * tileSize - grid) {
+              pixels[position + 0] = 1;
+              pixels[position + 1] = 1;
+              pixels[position + 2] = 1;
+              pixels[position + 3] = 255;
+            } else {
+              pixels[position + 0] = red;
+              pixels[position + 1] = green;
+              pixels[position + 2] = blue;
+              pixels[position + 3] = 255;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Draw image data to the canvas
+  ctx.putImageData(imageData, 0, 0);
+
+  canvas.addEventListener("mousemove", pickColor);
+};
