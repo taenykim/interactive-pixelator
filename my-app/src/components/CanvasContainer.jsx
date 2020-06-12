@@ -8,26 +8,36 @@ import { useCallback } from "react";
 const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
   let canvas;
   let isDrawing = false;
+  let canvasFirstData;
   console.log(gridColor);
 
   const mousedownHandler = useCallback(
     (e) => {
+      const ctx = canvas.getContext("2d");
       console.log("왜여러번?");
       isDrawing = true;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
+      canvasFirstData = drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
+      ctx.putImageData(canvasFirstData, 0, 0);
     },
     [pixelSize, gridSize, gridColor],
   );
   const mousemoveHandler = useCallback(
     (e) => {
-      if (!isDrawing) return;
+      const ctx = canvas.getContext("2d");
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
+      if (!isDrawing) {
+        ctx.putImageData(canvasFirstData, 0, 0);
+        ctx.putImageData(drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor), 0, 0);
+        return;
+      }
+
+      canvasFirstData = drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
+      ctx.putImageData(canvasFirstData, 0, 0);
     },
     [pixelSize, gridSize, gridColor],
   );
@@ -40,6 +50,8 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
     let canvasContainer = document.getElementById("canvas-container");
     canvasContainer.append(canvas);
     drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+    const ctx = canvas.getContext("2d");
+    canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   }, [image]);
 
   useEffect(() => {

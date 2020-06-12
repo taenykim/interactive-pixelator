@@ -61,5 +61,5 @@ export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor
   }
 
   // Draw image data to the canvas
-  ctx.putImageData(imageData, 0, 0);
+  return imageData;
 };
