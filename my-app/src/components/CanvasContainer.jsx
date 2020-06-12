@@ -52,20 +52,24 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
     drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     const ctx = canvas.getContext("2d");
     canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  }, [image]);
+  }, [canvas, image]);
 
   useEffect(() => {
     console.log("2");
     canvas = document.querySelector("#canvas");
     window.addEventListener("resize", () => {
       drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+      const ctx = canvas.getContext("2d");
+      canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     });
   }, [canvas, pixelSize, gridSize, gridColor]);
 
   useEffect(() => {
     console.log("3");
-    canvas = document.querySelector("#canvas");
     drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+    const ctx = canvas.getContext("2d");
+    canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    canvas = document.querySelector("#canvas");
     canvas.addEventListener("mousemove", pickColor);
     canvas.addEventListener("mousedown", mousedownHandler);
     canvas.addEventListener("mousemove", mousemoveHandler);
