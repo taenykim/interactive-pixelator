@@ -4,14 +4,13 @@ upload image and make interactive pixel art
 
 ## Feature
 
-<table width='500px' align="center">
+<table width='500px' >
 <tr>
 <th colspan="2">Original Image</th>
 </tr>
 <tr>
-<th colspan="2"><td>
-<img src="./images/original.jpg"/>
-</td></th>
+<th colspan="2">
+<img src="./images/original.jpg"/></th>
 </tr>
 <tr>
 <td align="center"><strong>Change Pixel size</strong></td>
