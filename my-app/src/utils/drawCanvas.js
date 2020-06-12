@@ -3,7 +3,8 @@ import { averageColor } from "./averageColor";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
-export const drawCanvas = (canvas, image, pixelSize, gridSize) => {
+export const drawCanvas = (canvas, image, pixelSize, gridSize, gridColor) => {
+  gridColor = gridColor || "#000000";
   console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
   const [width, height] = resizeImage(image);
@@ -17,9 +18,12 @@ export const drawCanvas = (canvas, image, pixelSize, gridSize) => {
   ctx.drawImage(image, 0, 0, width, height);
 
   const grid = gridSize;
+  const gridRed = parseInt(gridColor.substr(1, 2), 16);
+  const gridGreen = parseInt(gridColor.substr(3, 2), 16);
+  const gridBlue = parseInt(gridColor.substr(5, 2), 16);
 
   // Loop through each tile
-  for (let r = 0; r < numTileRows; r++) {
+  https: for (let r = 0; r < numTileRows; r++) {
     for (let c = 0; c < numTileCols; c++) {
       // Set the pixel values for each tile
       const rgb = averageColor(r, c, ctx, tileSize, dataOffset);
@@ -41,9 +45,9 @@ export const drawCanvas = (canvas, image, pixelSize, gridSize) => {
             // console.log("position", position);
             // Assign the colour to each pixel
             if (tc < grid || tr < grid || tc > canvas.width - c * tileSize - grid || tr > canvas.height - r * tileSize - grid) {
-              pixels[position + 0] = 1;
-              pixels[position + 1] = 1;
-              pixels[position + 2] = 1;
+              pixels[position + 0] = gridRed;
+              pixels[position + 1] = gridGreen;
+              pixels[position + 2] = gridBlue;
               pixels[position + 3] = 255;
             } else {
               pixels[position + 0] = red;
@@ -66,9 +70,9 @@ export const drawCanvas = (canvas, image, pixelSize, gridSize) => {
             // console.log("position", position);
             // Assign the colour to each pixel
             if (tc < grid || tr < grid || tr > canvas.height - r * tileSize - grid) {
-              pixels[position + 0] = 1;
-              pixels[position + 1] = 1;
-              pixels[position + 2] = 1;
+              pixels[position + 0] = gridRed;
+              pixels[position + 1] = gridGreen;
+              pixels[position + 2] = gridBlue;
               pixels[position + 3] = 255;
             } else {
               pixels[position + 0] = red;

@@ -1,6 +1,6 @@
 const dataOffset = 4; // we can set how many pixels to skip
 
-export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x) => {
+export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor) => {
   console.log("mCanvas ps", pixelSize);
 
   const tileSize = pixelSize;
@@ -15,9 +15,9 @@ export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x) => {
   const colIndex = Math.floor(y / tileSize);
 
   // Set the pixel values for each tile
-  const red = 255;
-  const green = 0;
-  const blue = 0;
+  const gridRed = parseInt(gridColor.substr(1, 2), 16);
+  const gridGreen = parseInt(gridColor.substr(3, 2), 16);
+  const gridBlue = parseInt(gridColor.substr(5, 2), 16);
 
   if (colIndex === numTileCols - 1) {
     for (let tr = 0; tr < tileSize; tr++) {
@@ -31,17 +31,11 @@ export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x) => {
 
         // console.log("position", position);
         // Assign the colour to each pixel
-        if (tc < grid || tr < grid || tc > canvas.width - colIndex * tileSize - grid || tr > canvas.height - rowIndex * tileSize - grid) {
-          pixels[position + 0] = 1;
-          pixels[position + 1] = 1;
-          pixels[position + 2] = 1;
-          pixels[position + 3] = 255;
-        } else {
-          pixels[position + 0] = red;
-          pixels[position + 1] = green;
-          pixels[position + 2] = blue;
-          pixels[position + 3] = 255;
-        }
+
+        pixels[position + 0] = gridRed;
+        pixels[position + 1] = gridGreen;
+        pixels[position + 2] = gridBlue;
+        pixels[position + 3] = 255;
       }
     }
   } else {
@@ -57,17 +51,11 @@ export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x) => {
 
         // console.log("position", position);
         // Assign the colour to each pixel
-        if (tc < grid || tr < grid || tr > canvas.height - rowIndex * tileSize - grid) {
-          pixels[position + 0] = 1;
-          pixels[position + 1] = 1;
-          pixels[position + 2] = 1;
-          pixels[position + 3] = 255;
-        } else {
-          pixels[position + 0] = red;
-          pixels[position + 1] = green;
-          pixels[position + 2] = blue;
-          pixels[position + 3] = 255;
-        }
+
+        pixels[position + 0] = gridRed;
+        pixels[position + 1] = gridGreen;
+        pixels[position + 2] = gridBlue;
+        pixels[position + 3] = 255;
       }
     }
   }

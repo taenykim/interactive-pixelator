@@ -5,9 +5,10 @@ import { pickColor } from "../utils/pickColor";
 import { drawMousemoveCanvas } from "../utils/drawMousemoveCanvas";
 import { useCallback } from "react";
 
-const CanvasContainer = ({ image, pixelSize, gridSize }) => {
+const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
   let canvas;
   let isDrawing = false;
+  console.log(gridColor);
 
   const mousedownHandler = useCallback(
     (e) => {
@@ -16,9 +17,9 @@ const CanvasContainer = ({ image, pixelSize, gridSize }) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y);
+      drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
     },
-    [pixelSize, gridSize],
+    [pixelSize, gridSize, gridColor],
   );
   const mousemoveHandler = useCallback(
     (e) => {
@@ -26,9 +27,9 @@ const CanvasContainer = ({ image, pixelSize, gridSize }) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y);
+      drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
     },
-    [pixelSize, gridSize],
+    [pixelSize, gridSize, gridColor],
   );
 
   // consider useEffect order
@@ -38,21 +39,21 @@ const CanvasContainer = ({ image, pixelSize, gridSize }) => {
     canvas.id = "canvas";
     let canvasContainer = document.getElementById("canvas-container");
     canvasContainer.append(canvas);
-    drawCanvas(canvas, image, pixelSize, gridSize);
+    drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
   }, [image]);
 
   useEffect(() => {
     console.log("2");
     canvas = document.querySelector("#canvas");
     window.addEventListener("resize", () => {
-      drawCanvas(canvas, image, pixelSize, gridSize);
+      drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     });
-  }, [canvas, pixelSize, gridSize]);
+  }, [canvas, pixelSize, gridSize, gridColor]);
 
   useEffect(() => {
     console.log("3");
     canvas = document.querySelector("#canvas");
-    drawCanvas(canvas, image, pixelSize, gridSize);
+    drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     canvas.addEventListener("mousemove", pickColor);
     canvas.addEventListener("mousedown", mousedownHandler);
     canvas.addEventListener("mousemove", mousemoveHandler);
@@ -67,7 +68,7 @@ const CanvasContainer = ({ image, pixelSize, gridSize }) => {
         isDrawing = false;
       });
     };
-  }, [pixelSize, gridSize]);
+  }, [pixelSize, gridSize, gridColor]);
 
   return <div id="canvas-container"></div>;
 };
