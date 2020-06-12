@@ -40,6 +40,8 @@
 
 ## How to use
 
+I used create-react-app ! ☺️
+
 ```BASH
 $ git clone https://github.com/taenykim/interactive-pixelator.git
 $ cd my-app
