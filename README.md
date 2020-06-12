@@ -4,7 +4,7 @@ upload image and make interactive pixel art
 
 ## Feature
 
-<table width="100%" align="center">
+<table width="50%" align="center">
 <tr>
 <th colspan="2">Feature</th>
 </tr>
