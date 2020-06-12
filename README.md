@@ -10,7 +10,7 @@ upload image and make interactive pixel art
 </tr>
 <tr>
 <th colspan="2">
-<img src="./images/original.jpg"/></th>
+<img width='400px' src="./images/original.jpg"/></th>
 </tr>
 <tr>
 <td align="center"><strong>Change Pixel size</strong></td>
@@ -37,3 +37,12 @@ upload image and make interactive pixel art
 </td>
 </tr>
 </table>
+
+## How to use
+
+```BASH
+$ git clone https://github.com/taenykim/interactive-pixelator.git
+$ cd my-app
+$ npm install
+$ npm start
+```
