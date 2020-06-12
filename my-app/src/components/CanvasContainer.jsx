@@ -35,12 +35,15 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
         ctx.putImageData(drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor), 0, 0);
         return;
       }
-
       canvasFirstData = drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
       ctx.putImageData(canvasFirstData, 0, 0);
     },
     [pixelSize, gridSize, gridColor],
   );
+  const mouseleaveHandler = useCallback(() => {
+    const ctx = canvas.getContext("2d");
+    ctx.putImageData(canvasFirstData, 0, 0);
+  });
 
   // consider useEffect order
   useEffect(() => {
@@ -73,6 +76,7 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
     canvas.addEventListener("mousemove", pickColor);
     canvas.addEventListener("mousedown", mousedownHandler);
     canvas.addEventListener("mousemove", mousemoveHandler);
+    canvas.addEventListener("mouseleave", mouseleaveHandler);
     window.addEventListener("mouseup", (e) => {
       isDrawing = false;
     });
@@ -80,6 +84,7 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
       canvas.removeEventListener("mousemove", pickColor);
       canvas.removeEventListener("mousedown", mousedownHandler);
       canvas.removeEventListener("mousemove", mousemoveHandler);
+      canvas.removeEventListener("mouseleave", mouseleaveHandler);
       window.removeEventListener("mouseup", (e) => {
         isDrawing = false;
       });
