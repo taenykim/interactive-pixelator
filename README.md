@@ -6,11 +6,16 @@ upload image and make interactive pixel art
 
 <table width='500px' align="center">
 <tr>
-<th colspan="2">Feature</th>
+<th colspan="2">Original Image</th>
 </tr>
 <tr>
-<td align="center"><strong>Change pixel size</strong></td>
-<td align="center"><strong>Change grid size</strong></td>
+<th colspan="2"><td>
+<img src="./images/original.jpg"/>
+</td></th>
+</tr>
+<tr>
+<td align="center"><strong>Change Pixel size</strong></td>
+<td align="center"><strong>Change Grid size</strong></td>
 </tr>
 <tr>
 <td align="center">
@@ -21,7 +26,7 @@ upload image and make interactive pixel art
 </td>
 </tr>
 <tr>
-<td align="center"><strong>Chnage grid color</strong></td>
+<td align="center"><strong>Chnage Grid color</strong></td>
 <td align="center"><strong>Draw freely</strong></td>
 </tr>
 <tr>
