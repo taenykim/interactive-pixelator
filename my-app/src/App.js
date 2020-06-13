@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import UploadContainer from "./components/UploadContainer";
 import CanvasContainer from "./components/CanvasContainer";
@@ -6,12 +6,14 @@ import Color from "./components/Color";
 import Pixel from "./components/Pixel";
 import Grid from "./components/Grid";
 import GridColor from "./components/GridColor";
+import PixelType from "./components/PixelType";
 
 const App = () => {
   const [imageData, setImageData] = useState(null);
   const [pixelSize, setPixelSize] = useState(100);
   const [gridSize, setGridSize] = useState(5);
   const [gridColor, setGridColor] = useState("#000000");
+  const [pixelType, setPixelType] = useState("square");
 
   const handleUpdateImageData = (imageData) => {
     setImageData(imageData);
@@ -29,6 +31,10 @@ const App = () => {
     setGridColor(e.target.value);
   };
 
+  const updatePixelType = (type) => {
+    setPixelType(type);
+  };
+
   return (
     <div className="App">
       <div id="controller">
@@ -40,6 +46,8 @@ const App = () => {
         <GridColor gridColor={gridColor} updateGridColor={updateGridColor} />
         grid size
         <Grid gridSize={gridSize} updateGridSize={updateGridSize} />
+        pixel type
+        <PixelType pixelType={pixelType} updatePixelType={updatePixelType} />
       </div>
       <div id="upload-wrapper">
         {!imageData ? <UploadContainer updateImageData={handleUpdateImageData} /> : <CanvasContainer image={imageData} pixelSize={pixelSize} gridSize={gridSize} gridColor={gridColor} />}

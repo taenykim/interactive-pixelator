@@ -86,9 +86,6 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
       canvas.removeEventListener("mousedown", mousedownHandler);
       canvas.removeEventListener("mousemove", mousemoveHandler);
       canvas.removeEventListener("mouseleave", mouseleaveHandler);
-      window.removeEventListener("mouseup", (e) => {
-        isDrawing = false;
-      });
     };
   }, [pixelSize, gridSize, gridColor]);
 
