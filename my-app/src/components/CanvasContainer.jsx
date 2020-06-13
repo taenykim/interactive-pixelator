@@ -7,6 +7,7 @@ import { useCallback } from "react";
 import { drawHoverCanvas } from "../utils/drawHoverCanvas";
 import { drawCanvasOriginal } from "../utils/drawCanvasOriginal";
 import { drawCanvasCircle } from "../utils/drawCanvasCircle";
+import { drawCanvasRoundSquare } from "../utils/drawCanvasRoundSquare";
 
 const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) => {
   let canvas;
@@ -55,11 +56,13 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) =
     let canvasContainer = document.getElementById("canvas-container");
     canvasContainer.append(canvas);
     if (pixelType === "square") {
-      drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+      drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     } else if (pixelType === "circle") {
-      drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+      drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor);
     } else if (pixelType === "original") {
       drawCanvasOriginal(canvas, image);
+    } else if (pixelType === "roundsquare") {
+      drawCanvasRoundSquare(canvas, image, pixelSize, gridSize, gridColor);
     }
     const ctx = canvas.getContext("2d");
     canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -70,31 +73,30 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) =
     canvas = document.querySelector("#canvas");
     window.addEventListener("resize", () => {
       if (pixelType === "square") {
-        console.log("this1");
-
-        drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+        drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
       } else if (pixelType === "circle") {
-        console.log("this2");
-
-        drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+        drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor);
       } else if (pixelType === "original") {
-        console.log("this");
         drawCanvasOriginal(canvas, image);
+      } else if (pixelType === "roundsquare") {
+        drawCanvasRoundSquare(canvas, image, pixelSize, gridSize, gridColor);
       }
       const ctx = canvas.getContext("2d");
       canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     });
-  }, [canvas, pixelSize, gridSize, gridColor, pixelType]);
+  }, [pixelSize, gridSize, gridColor, pixelType]);
 
   useEffect(() => {
     console.log("3");
     console.log("useeffect pixeltype", pixelType);
     if (pixelType === "square") {
-      drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+      drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     } else if (pixelType === "circle") {
-      drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+      drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor);
     } else if (pixelType === "original") {
       drawCanvasOriginal(canvas, image);
+    } else if (pixelType === "roundsquare") {
+      drawCanvasRoundSquare(canvas, image, pixelSize, gridSize, gridColor);
     }
     const ctx = canvas.getContext("2d");
     canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);

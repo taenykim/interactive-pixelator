@@ -1,9 +1,9 @@
-import { resizeImage } from "../utils/resizeImage";
+import { resizeImage } from "./resizeImage";
 import { averageColor } from "./averageColor";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
-export const drawCanvasCircle = (canvas, image, pixelSize, gridSize, gridColor) => {
+export const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
   console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
@@ -16,7 +16,7 @@ export const drawCanvasCircle = (canvas, image, pixelSize, gridSize, gridColor) 
   const numTileCols = Math.ceil(canvas.width / tileSize);
   ctx.drawImage(image, 0, 0, width, height);
 
-  const grid = gridSize;
+  const grid = Number(gridSize);
   const gridRed = parseInt(gridColor.substr(1, 2), 16);
   const gridGreen = parseInt(gridColor.substr(3, 2), 16);
   const gridBlue = parseInt(gridColor.substr(5, 2), 16);
@@ -38,8 +38,10 @@ export const drawCanvasCircle = (canvas, image, pixelSize, gridSize, gridColor) 
       ctx.fillStyle = `${gridColor}`;
       ctx.fillRect(trueRow, trueCol, tileSize, tileSize);
       ctx.fillStyle = `rgb(${red},${green},${blue})`;
-      ctx.arc(arcCenterX + tileSize / 2, arcCenterY + tileSize / 2, (tileSize - gridSize) / 2, 0, Math.PI * 2, false);
-      ctx.fill();
+      const radius = (tileSize * 20) / 100;
+      roundRect(ctx, trueRow + grid, trueCol + grid, tileSize - grid, tileSize - grid, radius, true);
+      console.log(ctx, trueRow + gridSize, trueCol + gridSize, tileSize - gridSize, tileSize - gridSize, radius, true);
+      // ctx.fillRect(trueRow + gridSize, trueCol + gridSize, tileSize - gridSize, tileSize - gridSize);
     }
   }
 
@@ -72,4 +74,38 @@ export const drawCanvasCircle = (canvas, image, pixelSize, gridSize, gridColor) 
 
   // // Draw image data to the canvas
   // ctx.putImageData(imageData2, 0, 0);
+
+  function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    if (typeof stroke === "undefined") {
+      stroke = true;
+    }
+    if (typeof radius === "undefined") {
+      radius = 5;
+    }
+    if (typeof radius === "number") {
+      radius = { tl: radius, tr: radius, br: radius, bl: radius };
+    } else {
+      var defaultRadius = { tl: 0, tr: 0, br: 0, bl: 0 };
+      for (var side in defaultRadius) {
+        radius[side] = radius[side] || defaultRadius[side];
+      }
+    }
+    ctx.beginPath();
+    ctx.moveTo(x + radius.tl, y);
+    ctx.lineTo(x + width - radius.tr, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius.tr);
+    ctx.lineTo(x + width, y + height - radius.br);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius.br, y + height);
+    ctx.lineTo(x + radius.bl, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius.bl);
+    ctx.lineTo(x, y + radius.tl);
+    ctx.quadraticCurveTo(x, y, x + radius.tl, y);
+    ctx.closePath();
+    if (fill) {
+      ctx.fill();
+    }
+    if (stroke) {
+      ctx.stroke();
+    }
+  }
 };
