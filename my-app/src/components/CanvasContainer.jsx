@@ -4,6 +4,7 @@ import { drawCanvas } from "../utils/drawCanvas";
 import { pickColor } from "../utils/pickColor";
 import { drawMousemoveCanvas } from "../utils/drawMousemoveCanvas";
 import { useCallback } from "react";
+import { drawHoverCanvas } from "../utils/drawHoverCanvas";
 
 const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
   let canvas;
@@ -32,7 +33,7 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
       const y = e.clientY - rect.top;
       if (!isDrawing) {
         ctx.putImageData(canvasFirstData, 0, 0);
-        ctx.putImageData(drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor), 0, 0);
+        ctx.putImageData(drawHoverCanvas(canvas, pixelSize, gridSize, x, y, gridColor), 0, 0);
         return;
       }
       canvasFirstData = drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
