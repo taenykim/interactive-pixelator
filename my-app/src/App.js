@@ -35,6 +35,10 @@ const App = () => {
     setPixelType(type);
   };
 
+  useEffect(() => {
+    console.log(pixelType);
+  }, [pixelType]);
+
   return (
     <div className="App">
       <div id="controller">
@@ -50,7 +54,11 @@ const App = () => {
         <PixelType pixelType={pixelType} updatePixelType={updatePixelType} />
       </div>
       <div id="upload-wrapper">
-        {!imageData ? <UploadContainer updateImageData={handleUpdateImageData} /> : <CanvasContainer image={imageData} pixelSize={pixelSize} gridSize={gridSize} gridColor={gridColor} />}
+        {!imageData ? (
+          <UploadContainer updateImageData={handleUpdateImageData} />
+        ) : (
+          <CanvasContainer image={imageData} pixelSize={pixelSize} gridSize={gridSize} gridColor={gridColor} pixelType={pixelType} />
+        )}
       </div>
     </div>
   );

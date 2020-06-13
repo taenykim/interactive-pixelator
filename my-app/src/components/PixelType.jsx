@@ -14,10 +14,14 @@ const PixelType = ({ pixelType, updatePixelType }) => {
   }, [pixelType]);
   return (
     <div id="pixeltype-radio-container">
-      <input type="radio" id="radio-square" value="square" name="pixel-type" onChange={() => updatePixelType("square")} />
-      <label htmlFor="radio-square">Square</label>
-      <input type="radio" id="radio-circle" value="circle" name="pixel-type" onChange={() => updatePixelType("circle")} />
-      <label htmlFor="radio-circle">Circle</label>
+      <div>
+        <input type="radio" id="radio-square" value="square" name="pixel-type" onChange={() => updatePixelType("square")} />
+        <label htmlFor="radio-square">Square</label>
+        <input type="radio" id="radio-circle" value="circle" name="pixel-type" onChange={() => updatePixelType("circle")} />
+        <label htmlFor="radio-circle">Circle</label>
+      </div>
+      <input type="radio" id="radio-original" value="original" name="pixel-type" onChange={() => updatePixelType("original")} />
+      <label htmlFor="radio-original">Original</label>
     </div>
   );
 };

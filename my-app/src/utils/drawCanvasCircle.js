@@ -3,7 +3,7 @@ import { averageColor } from "./averageColor";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
-export const drawCanvas = (canvas, image, pixelSize, gridSize, gridColor) => {
+export const drawCanvasCircle = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
   console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");

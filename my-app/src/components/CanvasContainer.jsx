@@ -5,12 +5,13 @@ import { pickColor } from "../utils/pickColor";
 import { drawMousemoveCanvas } from "../utils/drawMousemoveCanvas";
 import { useCallback } from "react";
 import { drawHoverCanvas } from "../utils/drawHoverCanvas";
+import { drawCanvasOriginal } from "../utils/drawCanvasOriginal";
+import { drawCanvasCircle } from "../utils/drawCanvasCircle";
 
-const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
+const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) => {
   let canvas;
   let isDrawing = false;
   let canvasFirstData;
-  console.log(gridColor);
 
   const mousedownHandler = useCallback(
     (e) => {
@@ -23,7 +24,7 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
       canvasFirstData = drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
       ctx.putImageData(canvasFirstData, 0, 0);
     },
-    [pixelSize, gridSize, gridColor],
+    [pixelSize, gridSize, gridColor, pixelType],
   );
   const mousemoveHandler = useCallback(
     (e) => {
@@ -39,7 +40,7 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
       canvasFirstData = drawMousemoveCanvas(canvas, pixelSize, gridSize, x, y, gridColor);
       ctx.putImageData(canvasFirstData, 0, 0);
     },
-    [pixelSize, gridSize, gridColor],
+    [pixelSize, gridSize, gridColor, pixelType],
   );
   const mouseleaveHandler = useCallback(() => {
     const ctx = canvas.getContext("2d");
@@ -53,7 +54,13 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
     canvas.id = "canvas";
     let canvasContainer = document.getElementById("canvas-container");
     canvasContainer.append(canvas);
-    drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+    if (pixelType === "square") {
+      drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+    } else if (pixelType === "circle") {
+      drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+    } else if (pixelType === "original") {
+      drawCanvasOriginal(canvas, image);
+    }
     const ctx = canvas.getContext("2d");
     canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   }, [canvas, image]);
@@ -62,15 +69,33 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
     console.log("2");
     canvas = document.querySelector("#canvas");
     window.addEventListener("resize", () => {
-      drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+      if (pixelType === "square") {
+        console.log("this1");
+
+        drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+      } else if (pixelType === "circle") {
+        console.log("this2");
+
+        drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+      } else if (pixelType === "original") {
+        console.log("this");
+        drawCanvasOriginal(canvas, image);
+      }
       const ctx = canvas.getContext("2d");
       canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     });
-  }, [canvas, pixelSize, gridSize, gridColor]);
+  }, [canvas, pixelSize, gridSize, gridColor, pixelType]);
 
   useEffect(() => {
     console.log("3");
-    drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+    console.log("useeffect pixeltype", pixelType);
+    if (pixelType === "square") {
+      drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+    } else if (pixelType === "circle") {
+      drawCanvas(canvas, image, pixelSize, gridSize, gridColor, pixelType);
+    } else if (pixelType === "original") {
+      drawCanvasOriginal(canvas, image);
+    }
     const ctx = canvas.getContext("2d");
     canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
     canvas = document.querySelector("#canvas");
@@ -87,7 +112,7 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor }) => {
       canvas.removeEventListener("mousemove", mousemoveHandler);
       canvas.removeEventListener("mouseleave", mouseleaveHandler);
     };
-  }, [pixelSize, gridSize, gridColor]);
+  }, [pixelSize, gridSize, gridColor, pixelType]);
 
   return <div id="canvas-container"></div>;
 };
