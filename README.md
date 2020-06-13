@@ -18,10 +18,10 @@
 </tr>
 <tr>
 <td align="center">
-<img src="./images/pixelsize1.gif">
+<img width='200px' src="./images/pixelsize1.gif">
 </td>
 <td align="center">
-<img src="./images/gridsize1.gif">
+<img width='200px' src="./images/gridsize1.gif">
 </td>
 </tr>
 <tr>
@@ -30,10 +30,10 @@
 </tr>
 <tr>
 <td align="center">
-<img src="./images/gridcolor1.gif">
+<img width='200px' src="./images/gridcolor1.gif">
 </td>
 <td align="center">
-<img src="./images/drawing1.gif">
+<img width='200px' src="./images/drawing1.gif">
 </td>
 </tr>
 <tr>
@@ -41,10 +41,10 @@
 </tr>
 <tr>
 <td align="center">
-<img src="./images/pixeltype1.png">
+<img width='200px' src="./images/pixeltype1.png">
 </td>
 <td align="center">
-<img src="./images/pixeltype2.png">
+<img width='200px' src="./images/pixeltype2.png">
 </td>
 </tr>
 </table>
