@@ -79,3 +79,7 @@
   border-top: 1px solid darkcyan;
   border-bottom: 1px solid darkcyan;
 }
+
+#pixeltype-radio-container {
+  text-align: initial;
+}

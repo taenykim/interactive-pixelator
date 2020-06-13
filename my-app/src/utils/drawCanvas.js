@@ -23,7 +23,7 @@ export const drawCanvas = (canvas, image, pixelSize, gridSize, gridColor) => {
   const gridBlue = parseInt(gridColor.substr(5, 2), 16);
 
   // Loop through each tile
-  https: for (let r = 0; r < numTileRows; r++) {
+  for (let r = 0; r < numTileRows; r++) {
     for (let c = 0; c < numTileCols; c++) {
       // Set the pixel values for each tile
       const rgb = averageColor(r, c, ctx, tileSize, dataOffset);

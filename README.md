@@ -36,6 +36,17 @@
 <img src="./images/drawing1.gif">
 </td>
 </tr>
+<tr>
+<td colspan="2" align="center"><strong>Chnage Pixel type</strong></td>
+</tr>
+<tr>
+<td align="center">
+<img src="./images/pixeltype1.png">
+</td>
+<td align="center">
+<img src="./images/pixeltype2.png">
+</td>
+</tr>
 </table>
 
 ## How to use
