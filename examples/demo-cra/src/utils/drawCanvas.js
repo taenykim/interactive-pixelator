@@ -1,4 +1,4 @@
-import { resizeImage } from "../utils/resizeImage";
+import { resizeImage } from "./resizeImage";
 import { averageColor } from "./averageColor";
 import { averageLastPixelColor } from "./averageLastPixelColor";
 const dataOffset = 4; // we can set how many pixels to skip

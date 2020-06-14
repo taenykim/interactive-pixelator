@@ -55,7 +55,7 @@ I used create-react-app ! ☺️
 
 ```BASH
 $ git clone https://github.com/taenykim/interactive-pixelator.git
-$ cd my-app
+$ cd example/demo-cra
 $ npm install
 $ npm start
 ```
