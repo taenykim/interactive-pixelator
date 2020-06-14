@@ -38,6 +38,7 @@ export const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridCo
       ctx.fillStyle = `${gridColor}`;
       ctx.fillRect(trueRow, trueCol, tileSize, tileSize);
       ctx.fillStyle = `rgb(${red},${green},${blue})`;
+      ctx.strokeStyle = `rgb(${red},${green},${blue})`;
       const radius = (tileSize * 20) / 100;
       roundRect(ctx, trueRow + grid, trueCol + grid, tileSize - grid, tileSize - grid, radius, true);
       console.log(ctx, trueRow + gridSize, trueCol + gridSize, tileSize - gridSize, tileSize - gridSize, radius, true);
