@@ -2,14 +2,15 @@ import { resizeImage } from "../utils/resizeImage";
 import { averageColor } from "./averageColor";
 import { averageLastPixelColor } from "./averageLastPixelColor";
 const dataOffset = 4; // we can set how many pixels to skip
+const borderSize = 2;
 
 export const drawCanvas = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
   console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
   const [width, height] = resizeImage(image);
-  canvas.width = Math.floor(width);
-  canvas.height = Math.floor(height);
+  canvas.width = width - borderSize;
+  canvas.height = height - borderSize;
   const tileSize = pixelSize;
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const pixels = imageData.data;
