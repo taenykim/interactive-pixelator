@@ -1,5 +1,6 @@
 import { resizeImage } from "./resizeImage";
 import { averageColor } from "./averageColor";
+import { averageLastPixelColor } from "./averageLastPixelColor";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
@@ -25,7 +26,10 @@ export const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridCo
   for (let r = 0; r < numTileRows; r++) {
     for (let c = 0; c < numTileCols; c++) {
       // Set the pixel values for each tile
-      const rgb = averageColor(r, c, ctx, tileSize, dataOffset);
+      let average;
+      if (c === numTileCols - 1 || r === numTileRows - 1) average = averageLastPixelColor(canvas, r, c, ctx, tileSize, dataOffset);
+      else average = averageColor(r, c, ctx, tileSize, dataOffset);
+      const rgb = average;
       const red = rgb.r;
       const green = rgb.g;
       const blue = rgb.b;
@@ -38,6 +42,7 @@ export const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridCo
       ctx.fillStyle = `${gridColor}`;
       ctx.fillRect(trueRow, trueCol, tileSize, tileSize);
       ctx.fillStyle = `rgb(${red},${green},${blue})`;
+      ctx.strokeStyle = `rgb(${red},${green},${blue})`;
       const radius = (tileSize * 20) / 100;
       roundRect(ctx, trueRow + grid, trueCol + grid, tileSize - grid, tileSize - grid, radius, true);
       console.log(ctx, trueRow + gridSize, trueCol + gridSize, tileSize - gridSize, tileSize - gridSize, radius, true);
