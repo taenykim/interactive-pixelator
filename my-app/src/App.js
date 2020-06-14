@@ -12,7 +12,7 @@ const App = () => {
   const [imageData, setImageData] = useState(null);
   const [pixelSize, setPixelSize] = useState(100);
   const [gridSize, setGridSize] = useState(5);
-  const [gridColor, setGridColor] = useState("#000000");
+  const [gridColor, setGridColor] = useState("#ffffff");
   const [pixelType, setPixelType] = useState("square");
 
   const handleUpdateImageData = (imageData) => {
