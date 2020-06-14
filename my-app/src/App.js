@@ -7,6 +7,7 @@ import Pixel from "./components/Pixel";
 import Grid from "./components/Grid";
 import GridColor from "./components/GridColor";
 import PixelType from "./components/PixelType";
+import DownloadButton from "./components/DownloadButton";
 
 const App = () => {
   const [imageData, setImageData] = useState(null);
@@ -35,6 +36,15 @@ const App = () => {
     setPixelType(type);
   };
 
+  const downloadHandler = () => {
+    const link = document.createElement("a");
+    const canvas = document.getElementById("canvas");
+    if (!canvas) return;
+    link.download = "filename.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  };
+
   useEffect(() => {
     console.log(pixelType);
   }, [pixelType]);
@@ -52,6 +62,7 @@ const App = () => {
         <Grid gridSize={gridSize} updateGridSize={updateGridSize} />
         pixel type
         <PixelType pixelType={pixelType} updatePixelType={updatePixelType} />
+        <DownloadButton downloadHandler={downloadHandler} />
       </div>
       <div id="upload-wrapper">
         {!imageData ? (
