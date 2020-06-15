@@ -54,6 +54,8 @@
 
 ## How to use
 
+> In progress, making module for easy to use
+
 I used create-react-app ! ☺️
 
 ```BASH
