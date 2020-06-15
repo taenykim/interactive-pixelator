@@ -1,5 +1,8 @@
 # Interactive pixelator
 
+![npm](https://img.shields.io/npm/v/interactive-pixelator?style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/taenykim/interactive-pixelator?style=for-the-badge)
+
 🌇 🌃 upload image and make interactive pixel art 🕹
 
 ## Feature
@@ -55,7 +58,7 @@ I used create-react-app ! ☺️
 
 ```BASH
 $ git clone https://github.com/taenykim/interactive-pixelator.git
-$ cd my-app
+$ cd example/demo-cra
 $ npm install
 $ npm start
 ```

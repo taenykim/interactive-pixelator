@@ -1,0 +1,37 @@
+{
+  "name": "interactive-pixelator",
+  "version": "0.0.0-beta.1",
+  "description": "upload image and make pixel art",
+  "main": "dist/pixelator.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taenykim/pixelator.git"
+  },
+  "author": "taenykim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taenykim/pixelator/issues"
+  },
+  "homepage": "https://github.com/taenykim/pixelator#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^3.6.0",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

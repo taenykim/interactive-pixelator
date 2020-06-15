@@ -1,0 +1,85 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+#upload-wrapper {
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-label {
+  position: relative;
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.upload-description {
+  text-align: center;
+}
+
+.upload-imgBtn {
+  width: 80%;
+  opacity: 0.2;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+#canvas-container {
+  position: relative;
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.img-item {
+  margin-top: 10px;
+  box-shadow: 0 14px 24px 0 rgba(186, 188, 191, 0.5);
+}
+
+#controller {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 10px;
+  left: 10px;
+  width: 200px;
+  height: 300px;
+  z-index: 10;
+  background-color: azure;
+  border: 2px solid darkcyan;
+  text-align: center;
+}
+
+#color {
+  width: 100%;
+  height: 30px;
+  font-size: 12px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  color: white;
+  border-top: 1px solid darkcyan;
+  border-bottom: 1px solid darkcyan;
+}
+
+#pixeltype-radio-container {
+  text-align: initial;
+}

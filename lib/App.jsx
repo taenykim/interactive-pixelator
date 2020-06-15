@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import UploadContainer from "./components/UploadContainer";
 import CanvasContainer from "./components/CanvasContainer";
 import Color from "./components/Color";
 import Pixel from "./components/Pixel";
@@ -8,6 +7,7 @@ import Grid from "./components/Grid";
 import GridColor from "./components/GridColor";
 import PixelType from "./components/PixelType";
 import DownloadButton from "./components/DownloadButton";
+import UploadContainer from "./components/UploadContainer";
 
 const App = () => {
   const [imageData, setImageData] = useState(null);
