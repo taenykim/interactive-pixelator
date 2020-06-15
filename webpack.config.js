@@ -7,7 +7,7 @@ module.exports = {
   mode: "none",
   entry: "./lib/index.jsx",
   output: {
-    filename: "bundle.js",
+    filename: "pixelator.js",
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {

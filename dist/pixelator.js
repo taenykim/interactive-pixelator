@@ -94,16 +94,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_index_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(16);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12);
 
 
 
-
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.StrictMode, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_3__["default"], null)), document.getElementById("root")); // If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.StrictMode, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_2__["default"], null)), document.getElementById("pixelator-container")); // export const customUse = () => {
+//   ReactDOM.render(
+//     <React.StrictMode>
+//       <App />
+//     </React.StrictMode>,
+//     document.getElementById("pixelator-container"),
+//   );
+// };
 
 /***/ }),
 /* 1 */
@@ -7643,10 +7645,142 @@ if (true) {
 
 /***/ }),
 /* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13);
+/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_CanvasContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(17);
+/* harmony import */ var _components_Color__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(28);
+/* harmony import */ var _components_Pixel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(29);
+/* harmony import */ var _components_Grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30);
+/* harmony import */ var _components_GridColor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(31);
+/* harmony import */ var _components_PixelType__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(32);
+/* harmony import */ var _components_DownloadButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(33);
+/* harmony import */ var _components_UploadContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(34);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+var App = function App() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      imageData = _useState2[0],
+      setImageData = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(100),
+      _useState4 = _slicedToArray(_useState3, 2),
+      pixelSize = _useState4[0],
+      setPixelSize = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(5),
+      _useState6 = _slicedToArray(_useState5, 2),
+      gridSize = _useState6[0],
+      setGridSize = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("#ffffff"),
+      _useState8 = _slicedToArray(_useState7, 2),
+      gridColor = _useState8[0],
+      setGridColor = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("square"),
+      _useState10 = _slicedToArray(_useState9, 2),
+      pixelType = _useState10[0],
+      setPixelType = _useState10[1];
+
+  var handleUpdateImageData = function handleUpdateImageData(imageData) {
+    setImageData(imageData);
+  };
+
+  var updatePixelSize = function updatePixelSize(e) {
+    setPixelSize(e.target.value);
+  };
+
+  var updateGridSize = function updateGridSize(e) {
+    setGridSize(e.target.value);
+  };
+
+  var updateGridColor = function updateGridColor(e) {
+    setGridColor(e.target.value);
+  };
+
+  var updatePixelType = function updatePixelType(type) {
+    setPixelType(type);
+  };
+
+  var downloadHandler = function downloadHandler() {
+    var link = document.createElement("a");
+    var canvas = document.getElementById("canvas");
+    if (!canvas) return;
+    link.download = "filename.png";
+    link.href = canvas.toDataURL();
+    link.click();
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    console.log(pixelType);
+  }, [pixelType]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "App"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "controller"
+  }, "color", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Color__WEBPACK_IMPORTED_MODULE_3__["default"], null), "pixel size", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pixel__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    pixelSize: pixelSize,
+    updatePixelSize: updatePixelSize
+  }), "grid color", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_GridColor__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    gridColor: gridColor,
+    updateGridColor: updateGridColor
+  }), "grid size", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Grid__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    gridSize: gridSize,
+    updateGridSize: updateGridSize
+  }), "pixel type", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PixelType__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    pixelType: pixelType,
+    updatePixelType: updatePixelType
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_DownloadButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    downloadHandler: downloadHandler
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "upload-wrapper"
+  }, !imageData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UploadContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    updateImageData: handleUpdateImageData
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CanvasContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    image: imageData,
+    pixelSize: pixelSize,
+    gridSize: gridSize,
+    gridColor: gridColor,
+    pixelType: pixelType
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var api = __webpack_require__(13);
-            var content = __webpack_require__(14);
+var api = __webpack_require__(14);
+            var content = __webpack_require__(15);
 
             content = content.__esModule ? content.default : content;
 
@@ -7666,7 +7800,7 @@ var update = api(content, options);
 module.exports = content.locals || {};
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7941,20 +8075,20 @@ module.exports = function (list, options) {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(15);
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "body {\n  margin: 0;\n  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',\n    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',\n    sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\ncode {\n  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',\n    monospace;\n}\n", ""]);
+exports.push([module.i, ".App {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100vw;\n  height: 100vh;\n}\n\n#upload-wrapper {\n  border: 1px solid black;\n  width: 90%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.upload-label {\n  position: relative;\n  border: 1px solid black;\n  width: 90%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n}\n\n.upload-description {\n  text-align: center;\n}\n\n.upload-imgBtn {\n  width: 80%;\n  opacity: 0.2;\n  padding-bottom: 20px;\n  margin-top: 20px;\n}\n\n#canvas-container {\n  position: relative;\n  border: 1px solid black;\n  width: 90%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n}\n\n.img-item {\n  margin-top: 10px;\n  box-shadow: 0 14px 24px 0 rgba(186, 188, 191, 0.5);\n}\n\n#controller {\n  position: fixed;\n  display: flex;\n  flex-direction: column;\n  top: 10px;\n  left: 10px;\n  width: 200px;\n  height: 300px;\n  z-index: 10;\n  background-color: azure;\n  border: 2px solid darkcyan;\n  text-align: center;\n}\n\n#color {\n  width: 100%;\n  height: 30px;\n  font-size: 12px;\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n  color: white;\n  border-top: 1px solid darkcyan;\n  border-bottom: 1px solid darkcyan;\n}\n\n#pixeltype-radio-container {\n  text-align: initial;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8054,189 +8188,20 @@ function toComment(sourceMap) {
 }
 
 /***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17);
-/* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_App_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_CanvasContainer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
-/* harmony import */ var _components_Color__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(30);
-/* harmony import */ var _components_Pixel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(31);
-/* harmony import */ var _components_Grid__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(32);
-/* harmony import */ var _components_GridColor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(33);
-/* harmony import */ var _components_PixelType__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(34);
-/* harmony import */ var _components_DownloadButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(35);
-/* harmony import */ var _components_UploadContainer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(36);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-
-
-
-var App = function App() {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
-      _useState2 = _slicedToArray(_useState, 2),
-      imageData = _useState2[0],
-      setImageData = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(100),
-      _useState4 = _slicedToArray(_useState3, 2),
-      pixelSize = _useState4[0],
-      setPixelSize = _useState4[1];
-
-  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(5),
-      _useState6 = _slicedToArray(_useState5, 2),
-      gridSize = _useState6[0],
-      setGridSize = _useState6[1];
-
-  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("#ffffff"),
-      _useState8 = _slicedToArray(_useState7, 2),
-      gridColor = _useState8[0],
-      setGridColor = _useState8[1];
-
-  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("square"),
-      _useState10 = _slicedToArray(_useState9, 2),
-      pixelType = _useState10[0],
-      setPixelType = _useState10[1];
-
-  var handleUpdateImageData = function handleUpdateImageData(imageData) {
-    setImageData(imageData);
-  };
-
-  var updatePixelSize = function updatePixelSize(e) {
-    setPixelSize(e.target.value);
-  };
-
-  var updateGridSize = function updateGridSize(e) {
-    setGridSize(e.target.value);
-  };
-
-  var updateGridColor = function updateGridColor(e) {
-    setGridColor(e.target.value);
-  };
-
-  var updatePixelType = function updatePixelType(type) {
-    setPixelType(type);
-  };
-
-  var downloadHandler = function downloadHandler() {
-    var link = document.createElement("a");
-    var canvas = document.getElementById("canvas");
-    if (!canvas) return;
-    link.download = "filename.png";
-    link.href = canvas.toDataURL();
-    link.click();
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log(pixelType);
-  }, [pixelType]);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "controller"
-  }, "color", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Color__WEBPACK_IMPORTED_MODULE_3__["default"], null), "pixel size", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pixel__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    pixelSize: pixelSize,
-    updatePixelSize: updatePixelSize
-  }), "grid color", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_GridColor__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    gridColor: gridColor,
-    updateGridColor: updateGridColor
-  }), "grid size", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Grid__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    gridSize: gridSize,
-    updateGridSize: updateGridSize
-  }), "pixel type", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PixelType__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    pixelType: pixelType,
-    updatePixelType: updatePixelType
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_DownloadButton__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    downloadHandler: downloadHandler
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "upload-wrapper"
-  }, !imageData ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UploadContainer__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    updateImageData: handleUpdateImageData
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CanvasContainer__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    image: imageData,
-    pixelSize: pixelSize,
-    gridSize: gridSize,
-    gridColor: gridColor,
-    pixelType: pixelType
-  })));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (App);
-
-/***/ }),
 /* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(13);
-            var content = __webpack_require__(18);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(15);
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.i, ".App {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100vw;\n  height: 100vh;\n}\n\n#upload-wrapper {\n  border: 1px solid black;\n  width: 90%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n}\n\n.upload-label {\n  position: relative;\n  border: 1px solid black;\n  width: 90%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n}\n\n.upload-description {\n  text-align: center;\n}\n\n.upload-imgBtn {\n  width: 80%;\n  opacity: 0.2;\n  padding-bottom: 20px;\n  margin-top: 20px;\n}\n\n#canvas-container {\n  position: relative;\n  border: 1px solid black;\n  width: 90%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  cursor: pointer;\n}\n\n.img-item {\n  margin-top: 10px;\n  box-shadow: 0 14px 24px 0 rgba(186, 188, 191, 0.5);\n}\n\n#controller {\n  position: fixed;\n  display: flex;\n  flex-direction: column;\n  top: 10px;\n  left: 10px;\n  width: 200px;\n  height: 300px;\n  z-index: 10;\n  background-color: azure;\n  border: 2px solid darkcyan;\n  text-align: center;\n}\n\n#color {\n  width: 100%;\n  height: 30px;\n  font-size: 12px;\n  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;\n  color: white;\n  border-top: 1px solid darkcyan;\n  border-bottom: 1px solid darkcyan;\n}\n\n#pixeltype-radio-container {\n  text-align: initial;\n}\n", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils_drawCanvas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
-/* harmony import */ var _utils_pickColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(24);
-/* harmony import */ var _utils_drawMousemoveCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(25);
-/* harmony import */ var _utils_drawHoverCanvas__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(26);
-/* harmony import */ var _utils_drawCanvasOriginal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(27);
-/* harmony import */ var _utils_drawCanvasCircle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(28);
-/* harmony import */ var _utils_drawCanvasRoundSquare__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(29);
+/* harmony import */ var _utils_drawCanvas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(18);
+/* harmony import */ var _utils_pickColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
+/* harmony import */ var _utils_drawMousemoveCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(23);
+/* harmony import */ var _utils_drawHoverCanvas__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(24);
+/* harmony import */ var _utils_drawCanvasOriginal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(25);
+/* harmony import */ var _utils_drawCanvasCircle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(26);
+/* harmony import */ var _utils_drawCanvasRoundSquare__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27);
 
 
 
@@ -8364,15 +8329,15 @@ var CanvasContainer = function CanvasContainer(_ref) {
 /* harmony default export */ __webpack_exports__["default"] = (CanvasContainer);
 
 /***/ }),
-/* 20 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "drawCanvas", function() { return drawCanvas; });
-/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
-/* harmony import */ var _averageColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(22);
-/* harmony import */ var _averageLastPixelColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23);
+/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(19);
+/* harmony import */ var _averageColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
+/* harmony import */ var _averageLastPixelColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(21);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8482,7 +8447,7 @@ var drawCanvas = function drawCanvas(canvas, image, pixelSize, gridSize, gridCol
 };
 
 /***/ }),
-/* 21 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8511,7 +8476,7 @@ var resizeImage = function resizeImage(image) {
 };
 
 /***/ }),
-/* 22 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8547,7 +8512,7 @@ var averageColor = function averageColor(row, column, ctx, tileSize, dataOffset)
 };
 
 /***/ }),
-/* 23 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8584,7 +8549,7 @@ var averageLastPixelColor = function averageLastPixelColor(canvas, row, column, 
 };
 
 /***/ }),
-/* 24 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8604,7 +8569,7 @@ var pickColor = function pickColor(event) {
 };
 
 /***/ }),
-/* 25 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8670,7 +8635,7 @@ var drawMousemoveCanvas = function drawMousemoveCanvas(canvas, pixelSize, gridSi
 };
 
 /***/ }),
-/* 26 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8740,13 +8705,13 @@ var drawHoverCanvas = function drawHoverCanvas(canvas, pixelSize, gridSize, y, x
 };
 
 /***/ }),
-/* 27 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "drawCanvasOriginal", function() { return drawCanvasOriginal; });
-/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
+/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(19);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8776,15 +8741,15 @@ var drawCanvasOriginal = function drawCanvasOriginal(canvas, image) {
 };
 
 /***/ }),
-/* 28 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "drawCanvasCircle", function() { return drawCanvasCircle; });
-/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
-/* harmony import */ var _averageColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(22);
-/* harmony import */ var _averageLastPixelColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23);
+/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(19);
+/* harmony import */ var _averageColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
+/* harmony import */ var _averageLastPixelColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(21);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -8874,15 +8839,15 @@ var drawCanvasCircle = function drawCanvasCircle(canvas, image, pixelSize, gridS
 };
 
 /***/ }),
-/* 29 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "drawCanvasRoundSquare", function() { return drawCanvasRoundSquare; });
-/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(21);
-/* harmony import */ var _averageColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(22);
-/* harmony import */ var _averageLastPixelColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23);
+/* harmony import */ var _resizeImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(19);
+/* harmony import */ var _averageColor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20);
+/* harmony import */ var _averageLastPixelColor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(21);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -9024,7 +8989,7 @@ var drawCanvasRoundSquare = function drawCanvasRoundSquare(canvas, image, pixelS
 };
 
 /***/ }),
-/* 30 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9042,7 +9007,7 @@ var Color = function Color() {
 /* harmony default export */ __webpack_exports__["default"] = (Color);
 
 /***/ }),
-/* 31 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9068,7 +9033,7 @@ var Pixel = function Pixel(_ref) {
 /* harmony default export */ __webpack_exports__["default"] = (Pixel);
 
 /***/ }),
-/* 32 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9094,7 +9059,7 @@ var Grid = function Grid(_ref) {
 /* harmony default export */ __webpack_exports__["default"] = (Grid);
 
 /***/ }),
-/* 33 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9118,7 +9083,7 @@ var GridColor = function GridColor(_ref) {
 /* harmony default export */ __webpack_exports__["default"] = (GridColor);
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9190,7 +9155,7 @@ var PixelType = function PixelType(_ref) {
 /* harmony default export */ __webpack_exports__["default"] = (PixelType);
 
 /***/ }),
-/* 35 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9210,7 +9175,7 @@ var DownloadButton = function DownloadButton(_ref) {
 /* harmony default export */ __webpack_exports__["default"] = (DownloadButton);
 
 /***/ }),
-/* 36 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

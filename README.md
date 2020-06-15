@@ -1,4 +1,4 @@
-# Interactive pixelator
+# Pixelator
 
 🌇 🌃 upload image and make interactive pixel art 🕹
 
