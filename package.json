@@ -1,8 +1,8 @@
 {
-  "name": "pixelator",
+  "name": "interactive-pixelator",
   "version": "0.0.0-beta.1",
   "description": "upload image and make pixel art",
-  "main": "dist/pixelator.min.js",
+  "main": "dist/pixelator.js",
   "directories": {
     "example": "examples",
     "lib": "lib"
