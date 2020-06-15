@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack && webpack-dev-server"
+    "dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,11 @@
   },
   "homepage": "https://github.com/taenykim/pixelator#readme",
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "babel-preset-react": "^6.24.1",
     "css-loader": "^3.6.0",
     "html-webpack-plugin": "^4.3.0",
     "style-loader": "^1.2.1",
