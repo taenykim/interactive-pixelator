@@ -5,9 +5,9 @@ var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "none",
-  entry: "./lib/index.jsx",
+  entry: "./lib/index.js",
   output: {
-    filename: "pixelator.js",
+    filename: "interactive-pixelator.js",
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {

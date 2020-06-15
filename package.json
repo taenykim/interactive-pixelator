@@ -1,15 +1,18 @@
 {
   "name": "interactive-pixelator",
-  "version": "0.0.0-beta.1",
+  "version": "0.0.0-beta.8",
   "description": "upload image and make pixel art",
-  "main": "dist/pixelator.js",
+  "main": "dist/interactive-pixelator.js",
+  "module": "dist/interactive-pixelator.js",
   "directories": {
     "example": "examples",
     "lib": "lib"
   },
   "scripts": {
-    "build": "webpack",
-    "dev": "webpack-dev-server"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
+    "build": "rollup -c",
+    "build:types": "tsc --emitDeclarationOnly"
   },
   "repository": {
     "type": "git",
@@ -25,10 +28,17 @@
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
+    "@svgr/rollup": "^5.4.0",
     "babel-loader": "^8.1.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^3.6.0",
     "html-webpack-plugin": "^4.3.0",
+    "rollup": "^2.16.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-url": "^3.0.1",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
