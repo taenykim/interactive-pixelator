@@ -1,7 +1,7 @@
 # Interactive pixelator
 
-![npm](https://img.shields.io/npm/v/interactive-pixelator?style=for-the-badge)
-![GitHub](https://img.shields.io/github/license/taenykim/interactive-pixelator?style=for-the-badge)
+![npm](https://img.shields.io/npm/v/interactive-pixelator)
+![GitHub](https://img.shields.io/github/license/taenykim/interactive-pixelator)
 
 🌇 🌃 upload image and make interactive pixel art 🕹
 
