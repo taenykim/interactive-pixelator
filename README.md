@@ -7,6 +7,8 @@
 
 🌇 🌃 upload image and make interactive pixel art 🕹
 
+**[Demo page](https://interactive-pixelator.vercel.app) / [NPM page](https://www.npmjs.com/package/interactive-pixelator)**
+
 ## 🌟 Feature
 
 <table width='100%' >
