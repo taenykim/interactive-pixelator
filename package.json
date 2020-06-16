@@ -1,9 +1,10 @@
 {
   "name": "interactive-pixelator",
-  "version": "0.0.0-beta.27",
+  "version": "0.0.0-beta.30",
   "description": "upload image and make pixel art",
   "main": "dist/interactive-pixelator.js",
   "module": "dist/interactive-pixelator.js",
+  "types": "dist/types/index.d.ts",
   "directories": {
     "example": "examples",
     "lib": "lib"
@@ -26,6 +27,7 @@
   "homepage": "https://github.com/taenykim/pixelator#readme",
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "@svgr/rollup": "^5.4.0",
@@ -34,7 +36,6 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^3.6.0",
-    "html-webpack-plugin": "^4.3.0",
     "rollup": "^2.16.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -44,12 +45,12 @@
     "rollup-plugin-peer-deps-external": "^2.2.2",
     "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
     "rollup-plugin-url": "^3.0.1",
     "rollup-plugin-visualizer": "^4.0.4",
     "style-loader": "^1.2.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.5"
   },
   "peerDependencies": {
     "react": "^16.13.1",
