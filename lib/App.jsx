@@ -45,9 +45,7 @@ const App = () => {
     link.click();
   };
 
-  useEffect(() => {
-    console.log(pixelType);
-  }, [pixelType]);
+  useEffect(() => {}, [pixelType]);
 
   return (
     <div className="App">

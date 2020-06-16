@@ -7,7 +7,6 @@ const borderSize = 2;
 
 export const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
-  console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
   const [width, height] = resizeImage(image);
   canvas.width = width - borderSize;

@@ -6,7 +6,6 @@ const borderSize = 2;
 
 export const drawCanvas = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
-  console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
   const [width, height] = resizeImage(image);
   canvas.width = width - borderSize;

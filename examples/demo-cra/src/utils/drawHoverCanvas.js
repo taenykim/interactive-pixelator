@@ -1,8 +1,6 @@
 const dataOffset = 4; // we can set how many pixels to skip
 
 export const drawHoverCanvas = (canvas, pixelSize, gridSize, y, x, hoverColor) => {
-  console.log("mCanvas ps", pixelSize);
-
   const tileSize = pixelSize;
   const numTileCols = Math.ceil(canvas.width / tileSize);
 

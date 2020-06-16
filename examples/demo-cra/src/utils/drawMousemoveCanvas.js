@@ -1,8 +1,6 @@
 const dataOffset = 4; // we can set how many pixels to skip
 
 export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor) => {
-  console.log("mCanvas ps", pixelSize);
-
   const tileSize = pixelSize;
   const numTileCols = Math.ceil(canvas.width / tileSize);
 

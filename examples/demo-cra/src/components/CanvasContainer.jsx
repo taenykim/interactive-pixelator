@@ -17,7 +17,6 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) =
   const mousedownHandler = useCallback(
     (e) => {
       const ctx = canvas.getContext("2d");
-      console.log("왜여러번?");
       isDrawing = true;
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -50,7 +49,6 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) =
 
   // consider useEffect order
   useEffect(() => {
-    console.log("1");
     canvas = document.createElement("canvas");
     canvas.id = "canvas";
     let canvasContainer = document.getElementById("canvas-container");
@@ -69,7 +67,6 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) =
   }, [canvas, image]);
 
   useEffect(() => {
-    console.log("2");
     canvas = document.querySelector("#canvas");
     window.addEventListener("resize", () => {
       if (pixelType === "square") {
@@ -87,8 +84,6 @@ const CanvasContainer = ({ image, pixelSize, gridSize, gridColor, pixelType }) =
   }, [pixelSize, gridSize, gridColor, pixelType]);
 
   useEffect(() => {
-    console.log("3");
-    console.log("useeffect pixeltype", pixelType);
     if (pixelType === "square") {
       drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     } else if (pixelType === "circle") {

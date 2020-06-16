@@ -46,7 +46,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(pixelType);
+    // console.log(pixelType);
   }, [pixelType]);
 
   return (
