@@ -1,4 +1,4 @@
-export const resizeImage = (image, $target) => {
+export const resizeImage = (image: HTMLImageElement, $target: HTMLElement) => {
   let MAX_WIDTH = $target.getBoundingClientRect().width - 1;
   let MAX_HEIGHT = $target.getBoundingClientRect().height - 1;
   let width = image.width;

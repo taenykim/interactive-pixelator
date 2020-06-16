@@ -7,12 +7,36 @@ import { drawMousemoveCanvas } from "../utils/drawMousemoveCanvas";
 import { drawHoverCanvas } from "../utils/drawHoverCanvas";
 
 export default class CanvasContainer {
-  constructor({ name, $container, image, pixelSize, gridSize, gridColor, pixelType }) {
+  isDrawing: boolean;
+  pixelSize: number;
+  gridSize: number;
+  gridColor: string;
+  pixelType: string;
+  canvas: HTMLCanvasElement;
+  canvasFirstData: ImageData | null;
+  constructor({
+    name,
+    $container,
+    image,
+    pixelSize,
+    gridSize,
+    gridColor,
+    pixelType,
+  }: {
+    name: string;
+    $container: HTMLElement;
+    image: HTMLImageElement;
+    pixelSize: number;
+    gridSize: number;
+    gridColor: string;
+    pixelType: string;
+  }) {
     this.isDrawing = false;
     this.pixelSize = pixelSize;
     this.gridSize = gridSize;
     this.gridColor = gridColor;
     this.pixelType = pixelType;
+    this.canvasFirstData = null;
 
     const canvas = document.createElement("canvas");
     this.canvas = canvas;
@@ -23,7 +47,7 @@ export default class CanvasContainer {
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d");
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    if (ctx) ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     this.render($container, canvas);
 
     if (pixelType === "square") {
@@ -35,7 +59,7 @@ export default class CanvasContainer {
     } else if (pixelType === "roundsquare") {
       drawCanvasRoundSquare(canvas, image, pixelSize, gridSize, gridColor);
     }
-    this.canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    if (ctx) this.canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
     canvas.addEventListener("mousedown", this.mousedownHandler.bind(this));
     canvas.addEventListener("mousemove", this.mousemoveHandler.bind(this));
@@ -45,36 +69,39 @@ export default class CanvasContainer {
     });
     this.render($container, canvas);
   }
-  render($container, canvas) {
+  render($container: HTMLElement, canvas: HTMLCanvasElement) {
     $container.innerHTML = "";
     $container.append(canvas);
   }
 
-  mousedownHandler(e) {
+  mousedownHandler(e: MouseEvent) {
     const ctx = this.canvas.getContext("2d");
     this.isDrawing = true;
     const rect = this.canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     this.canvasFirstData = drawMousemoveCanvas(this.canvas, this.pixelSize, this.gridSize, x, y, this.gridColor);
-    ctx.putImageData(this.canvasFirstData, 0, 0);
+    if (ctx && this.canvasFirstData) ctx.putImageData(this.canvasFirstData, 0, 0);
   }
 
-  mousemoveHandler(e) {
+  mousemoveHandler(e: MouseEvent) {
     const ctx = this.canvas.getContext("2d");
     const rect = this.canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     if (!this.isDrawing) {
-      ctx.putImageData(this.canvasFirstData, 0, 0);
-      ctx.putImageData(drawHoverCanvas(this.canvas, this.pixelSize, this.gridSize, x, y, this.gridColor), 0, 0);
+      if (ctx && this.canvasFirstData) {
+        ctx.putImageData(this.canvasFirstData, 0, 0);
+        const dragHoveredImageData = drawHoverCanvas(this.canvas, this.pixelSize, this.gridSize, x, y, this.gridColor);
+        if (dragHoveredImageData) ctx.putImageData(dragHoveredImageData, 0, 0);
+      }
       return;
     }
     this.canvasFirstData = drawMousemoveCanvas(this.canvas, this.pixelSize, this.gridSize, x, y, this.gridColor);
-    ctx.putImageData(this.canvasFirstData, 0, 0);
+    if (ctx && this.canvasFirstData) ctx.putImageData(this.canvasFirstData, 0, 0);
   }
   mouseleaveHandler() {
     const ctx = this.canvas.getContext("2d");
-    ctx.putImageData(this.canvasFirstData, 0, 0);
+    if (ctx && this.canvasFirstData) ctx.putImageData(this.canvasFirstData, 0, 0);
   }
 }

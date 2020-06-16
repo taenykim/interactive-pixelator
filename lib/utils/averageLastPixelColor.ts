@@ -1,13 +1,15 @@
-export const averageColor = (row, column, ctx, tileSize, dataOffset) => {
+const sizeOffset = 10;
+
+export const averageLastPixelColor = (row: number, column: number, ctx: CanvasRenderingContext2D, tileSize: number, dataOffset: number) => {
   const rgb = {
     r: 0,
     g: 0,
     b: 0,
   };
-  let data;
+  let data: ImageData;
 
   try {
-    data = ctx.getImageData(column * tileSize, row * tileSize, tileSize, tileSize);
+    data = ctx.getImageData(column * tileSize, row * tileSize, sizeOffset, sizeOffset);
   } catch (e) {
     return rgb;
   }

@@ -1,5 +1,6 @@
 export default class UploadContainer {
-  constructor({ name, $container, updateImageData }) {
+  updateImageData: Function;
+  constructor({ name, $container, updateImageData }: { name: string; $container: HTMLElement; updateImageData: Function }) {
     this.updateImageData = updateImageData;
 
     const label = document.createElement("label");
@@ -22,13 +23,14 @@ export default class UploadContainer {
     inputFile.id = `${name}-upload`;
     inputFile.className = `${name}-image-upload`;
     inputFile.hidden = true;
-    inputFile.addEventListener("change", (e) => {
+    inputFile.addEventListener("change", (e: any) => {
       e.stopPropagation();
       const reader = new FileReader();
 
-      reader.onload = (event) => {
+      reader.onload = (event: any) => {
         const img = new Image();
-        img.src = event.target.result;
+        const imgURL = event.target.result as string;
+        img.src = imgURL;
 
         img.onload = () => {
           this.updateImageData(img);
@@ -41,7 +43,7 @@ export default class UploadContainer {
     this.render($container, label, div);
   }
 
-  render($container, label, div) {
+  render($container: HTMLElement, label: HTMLLabelElement, div: HTMLDivElement) {
     $container.append(label);
     $container.append(div);
   }

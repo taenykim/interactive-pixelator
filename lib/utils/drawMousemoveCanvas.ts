@@ -1,6 +1,6 @@
 const dataOffset = 4; // we can set how many pixels to skip
 
-export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor) => {
+export const drawMousemoveCanvas = (canvas: HTMLCanvasElement, pixelSize: number, gridSize: number, y: number, x: number, gridColor: string) => {
   console.log("mCanvas ps", pixelSize);
 
   const tileSize = pixelSize;
@@ -8,8 +8,8 @@ export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor
 
   const ctx = canvas.getContext("2d");
   const grid = gridSize;
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const pixels = imageData.data;
+  const imageData = ctx ? ctx.getImageData(0, 0, canvas.width, canvas.height) : null;
+  const pixels = imageData ? imageData.data : null;
 
   const rowIndex = Math.floor(x / tileSize);
   const colIndex = Math.floor(y / tileSize);
@@ -27,15 +27,16 @@ export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor
         const trueCol = colIndex * tileSize + tc;
 
         // Calculate the position of the current pixel in the array
-        const position = trueRow * (imageData.width * dataOffset) + trueCol * dataOffset;
+        const imageDataWidth = imageData ? imageData.width : 0;
+        const position = trueRow * (imageDataWidth * dataOffset) + trueCol * dataOffset;
 
-        // console.log("position", position);
         // Assign the colour to each pixel
-
-        pixels[position + 0] = gridRed;
-        pixels[position + 1] = gridGreen;
-        pixels[position + 2] = gridBlue;
-        pixels[position + 3] = 255;
+        if (pixels) {
+          pixels[position + 0] = gridRed;
+          pixels[position + 1] = gridGreen;
+          pixels[position + 2] = gridBlue;
+          pixels[position + 3] = 255;
+        }
       }
     }
   } else {
@@ -49,13 +50,13 @@ export const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor
         // Calculate the position of the current pixel in the array
         const position = trueRow * (canvas.width * dataOffset) + trueCol * dataOffset;
 
-        // console.log("position", position);
         // Assign the colour to each pixel
-
-        pixels[position + 0] = gridRed;
-        pixels[position + 1] = gridGreen;
-        pixels[position + 2] = gridBlue;
-        pixels[position + 3] = 255;
+        if (pixels) {
+          pixels[position + 0] = gridRed;
+          pixels[position + 1] = gridGreen;
+          pixels[position + 2] = gridBlue;
+          pixels[position + 3] = 255;
+        }
       }
     }
   }
