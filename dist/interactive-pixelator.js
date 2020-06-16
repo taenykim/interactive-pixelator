@@ -216,8 +216,8 @@ var drawCanvasCircle = function (canvas, image, pixelSize, gridSize, gridColor) 
             }
             var rgb = average;
             var red = rgb ? rgb.r : 0;
-            var green = rgb ? rgb.r : 0;
-            var blue = rgb ? rgb.r : 0;
+            var green = rgb ? rgb.g : 0;
+            var blue = rgb ? rgb.b : 0;
             var trueRow = c * tileSize;
             var trueCol = r * tileSize;
             var arcCenterX = trueRow;

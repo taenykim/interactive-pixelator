@@ -31,7 +31,6 @@ export const drawCanvas = (canvas: HTMLCanvasElement, image: HTMLImageElement, p
       }
 
       const rgb = average;
-
       const red = rgb ? rgb.r : 0;
       const green = rgb ? rgb.g : 0;
       const blue = rgb ? rgb.b : 0;

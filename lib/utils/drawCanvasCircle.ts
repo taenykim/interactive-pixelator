@@ -21,11 +21,10 @@ export const drawCanvasCircle = (canvas: HTMLCanvasElement, image: HTMLImageElem
         if (c === numTileCols - 1 || r === numTileRows - 1) average = averageLastPixelColor(r, c, ctx, tileSize, dataOffset);
         else average = averageColor(r, c, ctx, tileSize, dataOffset);
       }
-
       const rgb = average;
       const red = rgb ? rgb.r : 0;
-      const green = rgb ? rgb.r : 0;
-      const blue = rgb ? rgb.r : 0;
+      const green = rgb ? rgb.g : 0;
+      const blue = rgb ? rgb.b : 0;
 
       const trueRow = c * tileSize;
       const trueCol = r * tileSize;
