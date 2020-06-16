@@ -15,6 +15,15 @@
     "build": "rollup -c",
     "build:types": "tsc --emitDeclarationOnly"
   },
+  "keywords": [
+    "interactive",
+    "pixelation",
+    "pixelator",
+    "image",
+    "processing",
+    "pixel",
+    "art"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/taenykim/pixelator.git"
