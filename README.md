@@ -7,7 +7,7 @@
 
 🌇 🌃 upload image and make interactive pixel art 🕹
 
-## Feature
+## 🌟 Feature
 
 <table width='100%' >
 <tr>
@@ -46,24 +46,28 @@
 </tr>
 </table>
 
-## How to use
+## 🌈 How to use
+
+### npm
 
 ```BASH
 $ npm i interactive-pixelator
 ```
 
+### usage
+
 ```typescript
 import { Pixelator, PixelImage } from "interactive-pixelator";
 
 // if you want upload element
-// ⚠️ Set width and height on the DOM element.
+// 🔥 Set width and height on the DOM element.
 new Pixelator("DOM element id", pixelSize, gridSize, gridColor, pixelType);
 
 // if you want only image
 new PixelImage("DOM element id", "image URL", pixelSize, gridSize, gridColor, pixelType);
 ```
 
-## Demo play
+## 🏎 Demo play
 
 > I used create-react-app ! ☺️
 
@@ -73,3 +77,7 @@ $ cd example/demo-cra
 $ npm install
 $ npm start
 ```
+
+## ✏️ And..
+
+Still incomplete. If you came in by chance, please give us a lot of advice and support.
