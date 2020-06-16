@@ -9,24 +9,27 @@
 
 ## Feature
 
-<table width='500px' >
+<table width='100%' >
 <tr>
-<th colspan="2">Original Image</th>
-</tr>
-<tr>
-<th colspan="2">
-<img width='400px' src="./images/original.jpg"/></th>
-</tr>
-<tr>
+<td align="center"><strong>Original Image</strong></td>
 <td align="center"><strong>Change Pixel size</strong></td>
+</tr>
+<tr>
+<td>
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/examples/demo-cra/public/ralph-sample.jpg"/></td>
+<td>
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/pixelsize1.gif"/></td>
+</tr>
+<tr>
+<td align="center"><strong>Chnage Pixel type</strong></td>
 <td align="center"><strong>Change Grid size</strong></td>
 </tr>
 <tr>
 <td align="center">
-<img width='200px' src="./images/pixelsize1.gif">
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/pixeltype1.gif">
 </td>
 <td align="center">
-<img width='200px' src="./images/gridsize1.gif">
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/gridsize1.gif">
 </td>
 </tr>
 <tr>
@@ -35,21 +38,10 @@
 </tr>
 <tr>
 <td align="center">
-<img width='200px' src="./images/gridcolor1.gif">
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/gridcolor1.gif">
 </td>
 <td align="center">
-<img width='200px' src="./images/drawing1.gif">
-</td>
-</tr>
-<tr>
-<td colspan="2" align="center"><strong>Chnage Pixel type</strong></td>
-</tr>
-<tr>
-<td align="center">
-<img width='200px' src="./images/pixeltype1.png">
-</td>
-<td align="center">
-<img width='200px' src="./images/pixeltype2.png">
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/drawing1.gif">
 </td>
 </tr>
 </table>
