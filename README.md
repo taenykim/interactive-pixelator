@@ -71,7 +71,7 @@ import { Pixelator, PixelImage } from "interactive-pixelator";
 new Pixelator("DOM-element-id", pixelSize, gridSize, gridColor, pixelType);
 
 // if you only need a image
-new PixelImage("DOM-element-i", "image URL", pixelSize, gridSize, gridColor, pixelType);
+new PixelImage("DOM-element-id", "image URL", pixelSize, gridSize, gridColor, pixelType);
 ```
 
 ## 🏎 Demo play
