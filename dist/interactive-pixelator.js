@@ -1,16 +1,17 @@
 class UploadContainer {
-  constructor({ $container, updateImageData }) {
+  constructor({ name, $container, updateImageData }) {
     this.updateImageData = updateImageData;
 
     const label = document.createElement("label");
-    label.htmlFor = "upload";
-    label.className = "upload-label";
+    label.htmlFor = `${name}-upload`;
+    label.className = `${name}-upload-label`;
 
     const p = document.createElement("p");
-    p.className = "upload-description";
+    p.className = `${name}-upload-description`;
     p.textContent = "UPLOAD IMAGE";
     p.style.width = "100%";
     p.style.height = "100%";
+    p.style.textAlign = "center";
 
     label.append(p);
 
@@ -18,8 +19,8 @@ class UploadContainer {
     const inputFile = document.createElement("input");
     inputFile.type = "file";
     inputFile.accept = "image/*";
-    inputFile.id = "upload";
-    inputFile.className = "image-upload";
+    inputFile.id = `${name}-upload`;
+    inputFile.className = `${name}-image-upload`;
     inputFile.hidden = true;
     inputFile.addEventListener("change", (e) => {
       e.stopPropagation();
@@ -532,19 +533,18 @@ const drawHoverCanvas = (canvas, pixelSize, gridSize, y, x, hoverColor) => {
 };
 
 class CanvasContainer {
-  isDrawing;
-  canvasFirstData;
-
-  constructor({ $container, image, pixelSize, gridSize, gridColor, pixelType }) {
+  constructor({ name, $container, image, pixelSize, gridSize, gridColor, pixelType }) {
     this.isDrawing = false;
     this.pixelSize = pixelSize;
     this.gridSize = gridSize;
     this.gridColor = gridColor;
     this.pixelType = pixelType;
 
-    $container.innerHTML = "";
     const canvas = document.createElement("canvas");
-    canvas.id = "canvas";
+    this.canvas = canvas;
+
+    $container.innerHTML = "";
+    canvas.id = `${name}-canvas`;
     const [width, height] = resizeImage(image, $container);
     canvas.width = width;
     canvas.height = height;
@@ -577,30 +577,30 @@ class CanvasContainer {
   }
 
   mousedownHandler(e) {
-    const ctx = canvas.getContext("2d");
+    const ctx = this.canvas.getContext("2d");
     this.isDrawing = true;
-    const rect = canvas.getBoundingClientRect();
+    const rect = this.canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    this.canvasFirstData = drawMousemoveCanvas(canvas, this.pixelSize, this.gridSize, x, y, this.gridColor);
+    this.canvasFirstData = drawMousemoveCanvas(this.canvas, this.pixelSize, this.gridSize, x, y, this.gridColor);
     ctx.putImageData(this.canvasFirstData, 0, 0);
   }
 
   mousemoveHandler(e) {
-    const ctx = canvas.getContext("2d");
-    const rect = canvas.getBoundingClientRect();
+    const ctx = this.canvas.getContext("2d");
+    const rect = this.canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     if (!this.isDrawing) {
       ctx.putImageData(this.canvasFirstData, 0, 0);
-      ctx.putImageData(drawHoverCanvas(canvas, this.pixelSize, this.gridSize, x, y, this.gridColor), 0, 0);
+      ctx.putImageData(drawHoverCanvas(this.canvas, this.pixelSize, this.gridSize, x, y, this.gridColor), 0, 0);
       return;
     }
-    this.canvasFirstData = drawMousemoveCanvas(canvas, this.pixelSize, this.gridSize, x, y, this.gridColor);
+    this.canvasFirstData = drawMousemoveCanvas(this.canvas, this.pixelSize, this.gridSize, x, y, this.gridColor);
     ctx.putImageData(this.canvasFirstData, 0, 0);
   }
   mouseleaveHandler() {
-    const ctx = canvas.getContext("2d");
+    const ctx = this.canvas.getContext("2d");
     ctx.putImageData(this.canvasFirstData, 0, 0);
   }
 }
@@ -616,9 +616,11 @@ class Pixelator {
     this.$container = $container;
 
     this.$target = new UploadContainer({
+      name,
       $container,
       updateImageData: (image) => {
         this.$target = new CanvasContainer({
+          name,
           $container,
           image,
           pixelSize,
@@ -646,6 +648,7 @@ class PixelImage {
     img.addEventListener("load", () => {
       const image = img;
       this.$target = new CanvasContainer({
+        name,
         $container,
         image,
         pixelSize,
