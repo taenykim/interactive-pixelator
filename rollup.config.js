@@ -6,7 +6,7 @@ import svgr from "@svgr/rollup";
 import url from "rollup-plugin-url";
 import typescript from "rollup-plugin-typescript";
 
-const extensions = [".js", ".jsx", ".ts", ".tsx"];
+const extensions = [".js", ".ts"];
 
 export default {
   input: "./lib/index.ts",

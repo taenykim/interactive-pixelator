@@ -26,4 +26,7 @@ export default class Pixelator {
         },
       });
   }
+  getImage() {
+    return this.$target;
+  }
 }

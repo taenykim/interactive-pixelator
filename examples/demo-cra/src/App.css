@@ -1,5 +1,6 @@
 .App {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -57,7 +58,7 @@
 }
 
 #controller {
-  position: fixed;
+  position: absolute;
   display: flex;
   flex-direction: column;
   top: 10px;
