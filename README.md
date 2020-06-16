@@ -61,11 +61,11 @@ $ npm i interactive-pixelator
 ```typescript
 import { Pixelator, PixelImage } from "interactive-pixelator";
 
-// if you want upload element
+// if you need a file upload element
 // 🔥 Set width and height on the DOM element.
 new Pixelator("DOM element id", pixelSize, gridSize, gridColor, pixelType);
 
-// if you want only image
+// if you only need a image
 new PixelImage("DOM element id", "image URL", pixelSize, gridSize, gridColor, pixelType);
 ```
 
