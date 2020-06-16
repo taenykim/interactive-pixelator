@@ -2,6 +2,8 @@
 
 ![npm](https://img.shields.io/npm/v/interactive-pixelator)
 ![GitHub](https://img.shields.io/github/license/taenykim/interactive-pixelator)
+![dependencies](https://img.shields.io/badge/dependencies-none-brightengreen)
+![typed](https://badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=555555&color=blue)
 
 🌇 🌃 upload image and make interactive pixel art 🕹
 
