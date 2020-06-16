@@ -48,9 +48,24 @@
 
 ## How to use
 
-> In progress, making module for easy to use
+```BASH
+$ npm i interactive-pixelator
+```
 
-I used create-react-app ! ☺️
+```typescript
+import { Pixelator, PixelImage } from "interactive-pixelator";
+
+// if you want upload element
+// ⚠️ Set width and height on the DOM element.
+new Pixelator("DOM element id", pixelSize, gridSize, gridColor, pixelType);
+
+// if you want only image
+new PixelImage("DOM element id", "image URL", pixelSize, gridSize, gridColor, pixelType);
+```
+
+## Demo play
+
+> I used create-react-app ! ☺️
 
 ```BASH
 $ git clone https://github.com/taenykim/interactive-pixelator.git
