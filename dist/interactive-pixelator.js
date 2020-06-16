@@ -561,6 +561,9 @@ var Pixelator = /** @class */ (function () {
                 },
             });
     }
+    Pixelator.prototype.getImage = function () {
+        return this.$target;
+    };
     return Pixelator;
 }());
 
