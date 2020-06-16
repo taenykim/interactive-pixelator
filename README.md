@@ -82,4 +82,4 @@ $ npm start
 
 ## ✏️ And..
 
-Still incomplete. If you came in by chance, please give us a lot of advice and support.
+Still incomplete. If you came in by chance, please give me a lot of advice and support.
