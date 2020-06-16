@@ -46,6 +46,30 @@ class UploadContainer {
   }
 }
 
+const resizeImage = (image, canvasId) => {
+  let MAX_WIDTH = document.getElementById(`${canvasId}`).getBoundingClientRect().width - 1;
+  let MAX_HEIGHT = document.getElementById(`${canvasId}`).getBoundingClientRect().height - 1;
+  let width = image.width;
+  let height = image.height;
+
+  // 아트보드 가로세로 비율
+  const artboardRatio = MAX_WIDTH / MAX_HEIGHT;
+  // 이미지 가로세로 비율
+  const imageRatio = width / height;
+
+  // 아트보드 비율이 이미지 비율보다 크면 이미지의 세로를 아트보드의 세로에 맞춤
+  if (artboardRatio > imageRatio) {
+    width *= MAX_HEIGHT / height;
+    height = MAX_HEIGHT;
+  }
+  // 이미지 비율이 아트보드 비율보다 크면 이미지의 가로를 아트보드의 가로에 맞춤
+  else {
+    height *= MAX_WIDTH / width;
+    width = MAX_WIDTH;
+  }
+  return [width, height];
+};
+
 const averageColor = (row, column, ctx, tileSize, dataOffset) => {
   const rgb = {
     r: 0,
@@ -109,13 +133,13 @@ const averageLastPixelColor = (canvas, row, column, ctx, tileSize, dataOffset) =
 };
 
 const dataOffset = 4; // we can set how many pixels to skip
-const borderSize = 2;
+const borderSize = 0;
 
 const drawCanvas = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
   console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
-  const [width, height] = [500, 500];
+  const [width, height] = resizeImage(image, canvas.id);
   canvas.width = width - borderSize;
   canvas.height = height - borderSize;
   const tileSize = pixelSize;
@@ -207,8 +231,11 @@ class CanvasContainer {
     $container.innerHTML = "";
     const canvas = document.createElement("canvas");
     canvas.id = "canvas";
-    canvas.width = $container.width;
-    canvas.height = $container.height;
+    console.log($container.style.width.match(/\d+(?=px)/g)[0]);
+    canvas.width = $container.style.width.match(/\d+(?=px)/g)[0];
+    canvas.height = $container.style.height.match(/\d+(?=px)/g)[0];
+    this.render($container, canvas);
+
     if (pixelType === "square") {
       drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     }
@@ -216,17 +243,18 @@ class CanvasContainer {
     this.render($container, canvas);
   }
   render($container, canvas) {
+    $container.innerHTML = "";
     $container.append(canvas);
   }
 }
 
-const pixelSize = 100;
-const gridSize = 10;
-const gridColor = "#ffffff";
-const pixelType = "square";
+// const pixelSize = 100;
+// const gridSize = 10;
+// const gridColor = "#ffffff";
+// const pixelType = "square";
 
 class Pixelator {
-  constructor(name) {
+  constructor(name, pixelSize, gridSize, gridColor, pixelType) {
     const $container = document.getElementById(`${name}`);
     this.$container = $container;
 
@@ -245,3 +273,5 @@ class Pixelator {
     });
   }
 }
+
+export default Pixelator;
