@@ -1,3 +1,3 @@
 {
-  "presets": [["react-app", { "flow": false, "typescript": true }]]
+  "presets": [["@babel/env", { "modules": false }], "@babel/preset-react"]
 }
