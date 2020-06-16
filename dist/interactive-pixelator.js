@@ -204,7 +204,6 @@ const dataOffset$1 = 4; // we can set how many pixels to skip
 
 const drawCanvasCircle = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
-  // console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
   const tileSize = pixelSize;
   // const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -279,7 +278,6 @@ const resizeImage = (image, $target) => {
   let MAX_HEIGHT = $target.getBoundingClientRect().height - 1;
   let width = image.width;
   let height = image.height;
-  // console.log(image.width, "이미지위스");
 
   // 아트보드 가로세로 비율
   const artboardRatio = MAX_WIDTH / MAX_HEIGHT;
@@ -303,7 +301,6 @@ const dataOffset$2 = 4; // we can set how many pixels to skip
 
 const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridColor) => {
   gridColor = gridColor || "#000000";
-  // console.log("drawCanvas ps", pixelSize);
   const ctx = canvas.getContext("2d");
   const tileSize = pixelSize;
   const numTileRows = Math.ceil(canvas.height / tileSize);
@@ -332,7 +329,6 @@ const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridColor) =>
       ctx.strokeStyle = `rgb(${red},${green},${blue})`;
       const radius = (tileSize * 20) / 100;
       roundRect(ctx, trueRow + grid, trueCol + grid, tileSize - grid, tileSize - grid, radius, true);
-      // console.log(ctx, trueRow + gridSize, trueCol + gridSize, tileSize - gridSize, tileSize - gridSize, radius, true);
       // ctx.fillRect(trueRow + gridSize, trueCol + gridSize, tileSize - gridSize, tileSize - gridSize);
     }
   }
@@ -405,7 +401,7 @@ const drawCanvasRoundSquare = (canvas, image, pixelSize, gridSize, gridColor) =>
 const dataOffset$3 = 4; // we can set how many pixels to skip
 
 const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor) => {
-  // console.log("mCanvas ps", pixelSize);
+  console.log("mCanvas ps", pixelSize);
 
   const tileSize = pixelSize;
   const numTileCols = Math.ceil(canvas.width / tileSize);
@@ -470,8 +466,6 @@ const drawMousemoveCanvas = (canvas, pixelSize, gridSize, y, x, gridColor) => {
 const dataOffset$4 = 4; // we can set how many pixels to skip
 
 const drawHoverCanvas = (canvas, pixelSize, gridSize, y, x, hoverColor) => {
-  // console.log("mCanvas ps", pixelSize);
-
   const tileSize = pixelSize;
   const numTileCols = Math.ceil(canvas.width / tileSize);
 
@@ -547,8 +541,7 @@ class CanvasContainer {
     this.gridSize = gridSize;
     this.gridColor = gridColor;
     this.pixelType = pixelType;
-    // console.log(pixelType, "pixel");
-    // console.log(image, "진짜이미지");
+
     $container.innerHTML = "";
     const canvas = document.createElement("canvas");
     canvas.id = "canvas";
@@ -585,7 +578,6 @@ class CanvasContainer {
 
   mousedownHandler(e) {
     const ctx = canvas.getContext("2d");
-    console.log("왜여러번?");
     this.isDrawing = true;
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -664,3 +656,5 @@ class PixelImage {
     });
   }
 }
+
+export { PixelImage, Pixelator };
