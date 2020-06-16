@@ -9,6 +9,8 @@ class UploadContainer {
     const p = document.createElement("p");
     p.className = "upload-description";
     p.textContent = "UPLOAD IMAGE";
+    p.style.width = "100%";
+    p.style.height = "100%";
 
     label.append(p);
 
@@ -202,10 +204,11 @@ const drawCanvas = (canvas, image, pixelSize, gridSize, gridColor) => {
 
 class CanvasContainer {
   constructor({ $container, image, pixelSize, gridSize, gridColor, pixelType }) {
+    $container.innerHTML = "";
     const canvas = document.createElement("canvas");
     canvas.id = "canvas";
-    canvas.width = 400;
-    canvas.height = 400;
+    canvas.width = $container.width;
+    canvas.height = $container.height;
     if (pixelType === "square") {
       drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
     }
@@ -242,5 +245,3 @@ class Pixelator {
     });
   }
 }
-
-export default Pixelator;
