@@ -56,9 +56,7 @@
 $ npm i interactive-pixelator
 ```
 
-### 2. Usage
-
-1. Create DOM container
+### 2. Create DOM container**
 
 > 🔥 Set width and height on the DOM element.
 
@@ -66,7 +64,7 @@ $ npm i interactive-pixelator
 <div id="DOM-element-id"></div>
 ```
 
-2. And make Interactive Pixel Art!
+### 3. And make Interactive Pixel Art!
 
 > If necessary, Add a controller, download button, etc. (reference : **[Demo page](https://interactive-pixelator.vercel.app)**)
 
