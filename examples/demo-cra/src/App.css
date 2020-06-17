@@ -17,6 +17,16 @@
   align-items: center;
 }
 
+#upload-wrapper2 {
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .upload-label {
   position: relative;
   border: 1px solid black;
@@ -40,7 +50,19 @@
   margin-top: 20px;
 }
 
-#canvas-container {
+#canvas-container1 {
+  position: relative;
+  border: 1px solid black;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+#canvas-container2 {
   position: relative;
   border: 1px solid black;
   width: 90%;
@@ -57,7 +79,7 @@
   box-shadow: 0 14px 24px 0 rgba(186, 188, 191, 0.5);
 }
 
-#controller {
+.controller {
   position: absolute;
   display: flex;
   flex-direction: column;

@@ -12,5 +12,6 @@
     "resolveJsonModule": true,
     "declaration": true,
     "declarationDir": "dist/types"
-  }
+  },
+  "include": ["lib"]
 }

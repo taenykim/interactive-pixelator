@@ -50,33 +50,35 @@
 
 ## 🌈 How to use
 
-### npm
+### 1. NPM install
 
 ```BASH
 $ npm i interactive-pixelator
 ```
 
-### usage
+### 2. Usage
+
+1. Create DOM container
+
+> 🔥 Set width and height on the DOM element.
 
 ```html
 <div id="DOM-element-id"></div>
 ```
 
+2. And make Interactive Pixel Art!
+
+> If necessary, Add a controller, download button, etc. (reference : **[Demo page](https://interactive-pixelator.vercel.app)**)
+
 ```typescript
-import { Pixelator, PixelImage } from "interactive-pixelator";
+import { Pixelator } from "interactive-pixelator";
 
-// 🔥 Set width and height on the DOM element.
-
-// if you need a file upload element
-new Pixelator("DOM-element-id", pixelSize, gridSize, gridColor, pixelType);
-
-// if you only need a image
-new PixelImage("DOM-element-id", "image URL", pixelSize, gridSize, gridColor, pixelType);
+new Pixelator("DOM-element-id", "image URL", pixelSize, gridSize, gridColor, pixelType);
 ```
 
 ## 🏎 Demo play
 
-> I used create-react-app ! ☺️
+> I used create-react-app ! ☺️ [source code](https://github.com/taenykim/interactive-pixelator/tree/master/examples/demo-cra)
 
 ```BASH
 $ git clone https://github.com/taenykim/interactive-pixelator.git
