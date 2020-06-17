@@ -56,7 +56,7 @@
 $ npm i interactive-pixelator
 ```
 
-### 2. Create DOM container**
+### 2. Create DOM container
 
 > 🔥 Set width and height on the DOM element.
 
