@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 
-const PixelType = ({ pixelType, updatePixelType }) => {
+const PixelType = ({ id, pixelType, updatePixelType }) => {
   useEffect(() => {
-    const container = document.getElementById("pixeltype-radio-container");
+    const container = document.getElementById(`pixeltype-radio-container${id}`);
     const matches = container.querySelectorAll("input");
     for (let i = 0; i < matches.length; i++) {
       if (matches[i].value === pixelType) {
@@ -13,17 +13,17 @@ const PixelType = ({ pixelType, updatePixelType }) => {
     }
   }, [pixelType]);
   return (
-    <div id="pixeltype-radio-container">
+    <div id={`pixeltype-radio-container${id}`}>
       <div>
-        <input type="radio" id="radio-square" value="square" name="pixel-type" onChange={() => updatePixelType("square")} />
-        <label htmlFor="radio-square">Square</label>
-        <input type="radio" id="radio-roundsquare" value="roundsquare" name="pixel-type" onChange={() => updatePixelType("roundsquare")} />
-        <label htmlFor="radio-roundsquare">Round Square</label>
+        <input type="radio" id={`radio-square` + id} value="square" name={`pixeltype` + id} onChange={() => updatePixelType("square")} />
+        <label htmlFor={`radio-square` + id}>Square</label>
+        <input type="radio" id={`radio-roundsquare` + id} value="roundsquare" name={`pixeltype` + id} onChange={() => updatePixelType("roundsquare")} />
+        <label htmlFor={`radio-roundsquare` + id}>Round Square</label>
       </div>
-      <input type="radio" id="radio-original" value="original" name="pixel-type" onChange={() => updatePixelType("original")} />
-      <label htmlFor="radio-original">Original</label>
-      <input type="radio" id="radio-circle" value="circle" name="pixel-type" onChange={() => updatePixelType("circle")} />
-      <label htmlFor="radio-circle">Circle</label>
+      <input type="radio" id={`radio-original` + id} value="original" name={`pixeltype` + id} onChange={() => updatePixelType("original")} />
+      <label htmlFor={`radio-original` + id}>Original</label>
+      <input type="radio" id={`radio-circle` + id} value="circle" name={`pixeltype` + id} onChange={() => updatePixelType("circle")} />
+      <label htmlFor={`radio-circle` + id}>Circle</label>
     </div>
   );
 };

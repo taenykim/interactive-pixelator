@@ -1,48 +1,3 @@
-var UploadContainer = /** @class */ (function () {
-    function UploadContainer(_a) {
-        var _this = this;
-        var name = _a.name, $container = _a.$container, updateImageData = _a.updateImageData;
-        this.updateImageData = updateImageData;
-        var label = document.createElement("label");
-        label.htmlFor = name + "-upload";
-        label.className = name + "-upload-label";
-        var p = document.createElement("p");
-        p.className = name + "-upload-description";
-        p.textContent = "UPLOAD IMAGE";
-        p.style.width = "100%";
-        p.style.height = "100%";
-        p.style.textAlign = "center";
-        label.append(p);
-        var div = document.createElement("div");
-        var inputFile = document.createElement("input");
-        inputFile.type = "file";
-        inputFile.accept = "image/*";
-        inputFile.id = name + "-upload";
-        inputFile.className = name + "-image-upload";
-        inputFile.hidden = true;
-        inputFile.addEventListener("change", function (e) {
-            e.stopPropagation();
-            var reader = new FileReader();
-            reader.onload = function (event) {
-                var img = new Image();
-                var imgURL = event.target.result;
-                img.src = imgURL;
-                img.onload = function () {
-                    _this.updateImageData(img);
-                };
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        });
-        div.append(inputFile);
-        this.render($container, label, div);
-    }
-    UploadContainer.prototype.render = function ($container, label, div) {
-        $container.append(label);
-        $container.append(div);
-    };
-    return UploadContainer;
-}());
-
 var averageColor = function (row, column, ctx, tileSize, dataOffset) {
     var rgb = {
         r: 0,
@@ -341,7 +296,6 @@ var resizeImage = function (image, $target) {
 
 var dataOffset$3 = 4; // we can set how many pixels to skip
 var drawMousemoveCanvas = function (canvas, pixelSize, gridSize, y, x, gridColor) {
-    console.log("mCanvas ps", pixelSize);
     var tileSize = pixelSize;
     var numTileCols = Math.ceil(canvas.width / tileSize);
     var ctx = canvas.getContext("2d");
@@ -538,35 +492,6 @@ var CanvasContainer = /** @class */ (function () {
     return CanvasContainer;
 }());
 
-var Pixelator = /** @class */ (function () {
-    function Pixelator(name, pixelSize, gridSize, gridColor, pixelType) {
-        var _this = this;
-        var $container = document.getElementById("" + name);
-        this.$container = $container;
-        this.$target = null;
-        if ($container)
-            this.$target = new UploadContainer({
-                name: name,
-                $container: $container,
-                updateImageData: function (image) {
-                    _this.$target = new CanvasContainer({
-                        name: name,
-                        $container: $container,
-                        image: image,
-                        pixelSize: pixelSize,
-                        gridSize: gridSize,
-                        gridColor: gridColor,
-                        pixelType: pixelType,
-                    });
-                },
-            });
-    }
-    Pixelator.prototype.getImage = function () {
-        return this.$target;
-    };
-    return Pixelator;
-}());
-
 var PixelImage = /** @class */ (function () {
     function PixelImage(name, imageSrc, pixelSize, gridSize, gridColor, pixelType) {
         var _this = this;
@@ -592,4 +517,4 @@ var PixelImage = /** @class */ (function () {
     return PixelImage;
 }());
 
-export { PixelImage, Pixelator };
+export { PixelImage as Pixelator };

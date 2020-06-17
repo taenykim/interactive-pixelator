@@ -1,7 +1,6 @@
-import UploadContainer from "./components/UploadContainer";
 import CanvasContainer from "./components/CanvasContainer";
-export default class Pixelator {
+export default class PixelImage {
     $container: HTMLElement | null;
-    $target: UploadContainer | CanvasContainer | null;
-    constructor(name: string, pixelSize: number, gridSize: number, gridColor: string, pixelType: string);
+    $target: CanvasContainer | null;
+    constructor(name: string, imageSrc: string, pixelSize: number, gridSize: number, gridColor: string, pixelType: string);
 }
