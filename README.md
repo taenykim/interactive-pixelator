@@ -87,4 +87,4 @@ $ npm start
 
 ## ✏️ And..
 
-Still incomplete. If you came in by chance, please give me a lot of advice and support.
+**This project is incomplete, yet. If you came in by chance, please give me a lot of advice and support.**
