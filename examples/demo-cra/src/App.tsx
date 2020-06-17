@@ -47,7 +47,7 @@ const App = () => {
 
   return (
     <div>
-      <div className="App">Demo</div>
+      <div className="App">Demo(PC)</div>
       <div className="App">
         <div id="controller">
           color
