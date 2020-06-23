@@ -69,12 +69,12 @@ const App = () => {
   };
 
   useEffect(() => {
-    new Pixelator("upload-wrapper2", imageSrc, pixelSize2, gridSize2, gridColor2, pixelType2);
+    new Pixelator("upload-wrapper2", imageSrc, { pixelSize: pixelSize2, gridSize: gridSize2, gridColor: gridColor2, pixelType: pixelType2 });
   }, [imageSrc]);
 
   useEffect(() => {
-    new Pixelator("upload-wrapper", "./ralph-sample.jpg", pixelSize1, gridSize1, gridColor1, pixelType1);
-    new Pixelator("upload-wrapper2", imageSrc, pixelSize2, gridSize2, gridColor2, pixelType2);
+    new Pixelator("upload-wrapper", "./ralph-sample.jpg", { pixelSize: pixelSize1, gridSize: gridSize1, gridColor: gridColor1, pixelType: pixelType1 });
+    new Pixelator("upload-wrapper2", imageSrc, { pixelSize: pixelSize2, gridSize: gridSize2, gridColor: gridColor2, pixelType: pixelType2 });
   }, [pixelSize1, gridSize1, gridColor1, pixelType1, pixelSize2, gridSize2, gridColor2, pixelType2]);
 
   return (

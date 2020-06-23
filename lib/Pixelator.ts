@@ -1,9 +1,10 @@
 import CanvasContainer from "./components/CanvasContainer";
+import { PixelatorOptions } from "./types";
 
-export default class PixelImage {
+export default class Pixelator {
   $container: HTMLElement | null;
   $target: CanvasContainer | null;
-  constructor(name: string, imageSrc: string, pixelSize: number, gridSize: number, gridColor: string, pixelType: string) {
+  constructor(name: string, imageSrc: string, options: PixelatorOptions = {}) {
     const $container = document.getElementById(`${name}`);
     this.$container = $container;
     this.$target = null;
@@ -17,10 +18,7 @@ export default class PixelImage {
           name,
           $container,
           image,
-          pixelSize,
-          gridSize,
-          gridColor,
-          pixelType,
+          options,
         });
       });
   }

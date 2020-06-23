@@ -5,6 +5,7 @@ import { drawCanvasRoundSquare } from "../utils/drawCanvasRoundSquare";
 import { resizeImage } from "../utils/resizeImage";
 import { drawMousemoveCanvas } from "../utils/drawMousemoveCanvas";
 import { drawHoverCanvas } from "../utils/drawHoverCanvas";
+import { PixelatorOptions } from "../types";
 
 export default class CanvasContainer {
   isDrawing: boolean;
@@ -14,28 +15,12 @@ export default class CanvasContainer {
   pixelType: string;
   canvas: HTMLCanvasElement;
   canvasFirstData: ImageData | null;
-  constructor({
-    name,
-    $container,
-    image,
-    pixelSize,
-    gridSize,
-    gridColor,
-    pixelType,
-  }: {
-    name: string;
-    $container: HTMLElement;
-    image: HTMLImageElement;
-    pixelSize: number;
-    gridSize: number;
-    gridColor: string;
-    pixelType: string;
-  }) {
+  constructor({ name, $container, image, options }: { name: string; $container: HTMLElement; image: HTMLImageElement; options: PixelatorOptions }) {
     this.isDrawing = false;
-    this.pixelSize = pixelSize;
-    this.gridSize = gridSize;
-    this.gridColor = gridColor;
-    this.pixelType = pixelType;
+    this.pixelSize = options.pixelSize || 100;
+    this.gridSize = options.gridSize || 10;
+    this.gridColor = options.gridColor || "#ffffff";
+    this.pixelType = options.pixelType || "square";
     this.canvasFirstData = null;
 
     const canvas = document.createElement("canvas");
@@ -50,14 +35,14 @@ export default class CanvasContainer {
     if (ctx) ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     this.render($container, canvas);
 
-    if (pixelType === "square") {
-      drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
-    } else if (pixelType === "circle") {
-      drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor);
-    } else if (pixelType === "original") {
+    if (this.pixelType === "square") {
+      drawCanvas(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
+    } else if (this.pixelType === "circle") {
+      drawCanvasCircle(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
+    } else if (this.pixelType === "original") {
       drawCanvasOriginal(canvas, image);
-    } else if (pixelType === "roundsquare") {
-      drawCanvasRoundSquare(canvas, image, pixelSize, gridSize, gridColor);
+    } else if (this.pixelType === "roundsquare") {
+      drawCanvasRoundSquare(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
     }
     if (ctx) this.canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 

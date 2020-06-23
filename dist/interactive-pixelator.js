@@ -412,12 +412,12 @@ var drawHoverCanvas = function (canvas, pixelSize, gridSize, y, x, hoverColor) {
 var CanvasContainer = /** @class */ (function () {
     function CanvasContainer(_a) {
         var _this = this;
-        var name = _a.name, $container = _a.$container, image = _a.image, pixelSize = _a.pixelSize, gridSize = _a.gridSize, gridColor = _a.gridColor, pixelType = _a.pixelType;
+        var name = _a.name, $container = _a.$container, image = _a.image, options = _a.options;
         this.isDrawing = false;
-        this.pixelSize = pixelSize;
-        this.gridSize = gridSize;
-        this.gridColor = gridColor;
-        this.pixelType = pixelType;
+        this.pixelSize = options.pixelSize || 100;
+        this.gridSize = options.gridSize || 10;
+        this.gridColor = options.gridColor || "#ffffff";
+        this.pixelType = options.pixelType || "square";
         this.canvasFirstData = null;
         var canvas = document.createElement("canvas");
         this.canvas = canvas;
@@ -430,17 +430,17 @@ var CanvasContainer = /** @class */ (function () {
         if (ctx)
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         this.render($container, canvas);
-        if (pixelType === "square") {
-            drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+        if (this.pixelType === "square") {
+            drawCanvas(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
         }
-        else if (pixelType === "circle") {
-            drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor);
+        else if (this.pixelType === "circle") {
+            drawCanvasCircle(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
         }
-        else if (pixelType === "original") {
+        else if (this.pixelType === "original") {
             drawCanvasOriginal(canvas, image);
         }
-        else if (pixelType === "roundsquare") {
-            drawCanvasRoundSquare(canvas, image, pixelSize, gridSize, gridColor);
+        else if (this.pixelType === "roundsquare") {
+            drawCanvasRoundSquare(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
         }
         if (ctx)
             this.canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -492,9 +492,10 @@ var CanvasContainer = /** @class */ (function () {
     return CanvasContainer;
 }());
 
-var PixelImage = /** @class */ (function () {
-    function PixelImage(name, imageSrc, pixelSize, gridSize, gridColor, pixelType) {
+var Pixelator = /** @class */ (function () {
+    function Pixelator(name, imageSrc, options) {
         var _this = this;
+        if (options === void 0) { options = {}; }
         var $container = document.getElementById("" + name);
         this.$container = $container;
         this.$target = null;
@@ -507,14 +508,11 @@ var PixelImage = /** @class */ (function () {
                     name: name,
                     $container: $container,
                     image: image,
-                    pixelSize: pixelSize,
-                    gridSize: gridSize,
-                    gridColor: gridColor,
-                    pixelType: pixelType,
+                    options: options,
                 });
             });
     }
-    return PixelImage;
+    return Pixelator;
 }());
 
-export { PixelImage as Pixelator };
+export { Pixelator };
