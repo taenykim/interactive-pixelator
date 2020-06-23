@@ -52,7 +52,7 @@
 </tr>
 <tr>
 <td align="center">
-<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/filter1.gif">
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/filter.gif">
 </td>
 <td align="center">
 </td>
