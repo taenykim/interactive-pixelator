@@ -5,7 +5,7 @@ export const drawCanvasOriginal = (canvas: HTMLCanvasElement, image: HTMLImageEl
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (filterType === "grayscale") {
       ctx.filter = "grayscale(100%)";
-    } else if ((filterType = "invert")) {
+    } else if (filterType === "invert") {
       ctx.filter = "invert(100%)";
     }
     ctx.drawImage(image, 0, 0, canvas.width, canvas.height);

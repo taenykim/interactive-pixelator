@@ -237,7 +237,7 @@ var drawCanvasOriginal = function (canvas, image, filterType) {
         if (filterType === "grayscale") {
             ctx.filter = "grayscale(100%)";
         }
-        else if ((filterType = "invert")) {
+        else if (filterType === "invert") {
             ctx.filter = "invert(100%)";
         }
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
