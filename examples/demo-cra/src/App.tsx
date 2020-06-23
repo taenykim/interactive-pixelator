@@ -7,16 +7,19 @@ import GridColor from "./components/GridColor";
 import PixelType from "./components/PixelType";
 import DownloadButton from "./components/DownloadButton";
 import { Pixelator } from "../../../../interactive-pixelator";
+import FilterType from "./components/FilterType";
 
 const App = () => {
   const [pixelSize1, setPixelSize1] = useState(100);
   const [gridSize1, setGridSize1] = useState(5);
   const [gridColor1, setGridColor1] = useState("#ffffff");
   const [pixelType1, setPixelType1] = useState("square");
+  const [filterType1, setFilterType1] = useState("none");
   const [pixelSize2, setPixelSize2] = useState(100);
   const [gridSize2, setGridSize2] = useState(5);
   const [gridColor2, setGridColor2] = useState("#ffffff");
   const [pixelType2, setPixelType2] = useState("square");
+  const [filterType2, setFilterType2] = useState("none");
   const [imageSrc, setImageSrc] = useState("");
 
   const updatePixelSize1 = (e: any) => {
@@ -33,6 +36,10 @@ const App = () => {
 
   const updatePixelType1 = (type: string) => {
     setPixelType1(type);
+  };
+
+  const updateFilterType1 = (type: string) => {
+    setFilterType1(type);
   };
 
   const downloadHandler1 = () => {
@@ -59,6 +66,10 @@ const App = () => {
     setPixelType2(type);
   };
 
+  const updateFilterType2 = (type: string) => {
+    setFilterType2(type);
+  };
+
   const downloadHandler2 = () => {
     const link = document.createElement("a");
     const canvas: any = document.getElementById("upload-wrapper2-canvas");
@@ -69,13 +80,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    new Pixelator("upload-wrapper2", imageSrc, { pixelSize: pixelSize2, gridSize: gridSize2, gridColor: gridColor2, pixelType: pixelType2 });
+    new Pixelator("upload-wrapper2", imageSrc, { pixelSize: pixelSize2, gridSize: gridSize2, gridColor: gridColor2, pixelType: pixelType2, filterType: filterType2 });
   }, [imageSrc]);
 
   useEffect(() => {
-    new Pixelator("upload-wrapper", "./ralph-sample.jpg", { pixelSize: pixelSize1, gridSize: gridSize1, gridColor: gridColor1, pixelType: pixelType1 });
-    new Pixelator("upload-wrapper2", imageSrc, { pixelSize: pixelSize2, gridSize: gridSize2, gridColor: gridColor2, pixelType: pixelType2 });
-  }, [pixelSize1, gridSize1, gridColor1, pixelType1, pixelSize2, gridSize2, gridColor2, pixelType2]);
+    new Pixelator("upload-wrapper", "./ralph-sample.jpg", { pixelSize: pixelSize1, gridSize: gridSize1, gridColor: gridColor1, pixelType: pixelType1, filterType: filterType1 });
+    new Pixelator("upload-wrapper2", imageSrc, { pixelSize: pixelSize2, gridSize: gridSize2, gridColor: gridColor2, pixelType: pixelType2, filterType: filterType2 });
+  }, [pixelSize1, gridSize1, gridColor1, pixelType1, pixelSize2, gridSize2, gridColor2, pixelType2, filterType1, filterType2]);
 
   return (
     <div>
@@ -92,6 +103,8 @@ const App = () => {
           <Grid gridSize={gridSize1} updateGridSize={updateGridSize1} />
           pixel type
           <PixelType id={`1`} pixelType={pixelType1} updatePixelType={updatePixelType1} />
+          image filter
+          <FilterType id={`1`} filterType={filterType1} updateFilterType={updateFilterType1} />
           <DownloadButton downloadHandler={downloadHandler1} />
         </div>
         <div id="upload-wrapper"></div>
@@ -108,6 +121,8 @@ const App = () => {
           <Grid gridSize={gridSize2} updateGridSize={updateGridSize2} />
           pixel type
           <PixelType id={`2`} pixelType={pixelType2} updatePixelType={updatePixelType2} />
+          image filter
+          <FilterType id={`2`} filterType={filterType2} updateFilterType={updateFilterType2} />
           <DownloadButton downloadHandler={downloadHandler2} />
         </div>
         <div id="upload-wrapper2">

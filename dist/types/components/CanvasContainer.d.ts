@@ -5,6 +5,7 @@ export default class CanvasContainer {
     gridSize: number;
     gridColor: string;
     pixelType: string;
+    filterType: string;
     canvas: HTMLCanvasElement;
     canvasFirstData: ImageData | null;
     constructor({ name, $container, image, options }: {

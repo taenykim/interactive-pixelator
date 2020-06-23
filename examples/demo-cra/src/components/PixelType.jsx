@@ -13,7 +13,7 @@ const PixelType = ({ id, pixelType, updatePixelType }) => {
     }
   }, [pixelType]);
   return (
-    <div id={`pixeltype-radio-container${id}`}>
+    <div style={{ background: "white", textAlign: "left", border: "1px solid black" }} id={`pixeltype-radio-container${id}`}>
       <div>
         <input type="radio" id={`radio-square` + id} value="square" name={`pixeltype` + id} onChange={() => updatePixelType("square")} />
         <label htmlFor={`radio-square` + id}>Square</label>

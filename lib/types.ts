@@ -3,4 +3,5 @@ export interface PixelatorOptions {
   gridSize?: number;
   gridColor?: string;
   pixelType?: string;
+  filterType?: string;
 }

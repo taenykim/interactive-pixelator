@@ -13,6 +13,7 @@ export default class CanvasContainer {
   gridSize: number;
   gridColor: string;
   pixelType: string;
+  filterType: string;
   canvas: HTMLCanvasElement;
   canvasFirstData: ImageData | null;
   constructor({ name, $container, image, options }: { name: string; $container: HTMLElement; image: HTMLImageElement; options: PixelatorOptions }) {
@@ -21,6 +22,7 @@ export default class CanvasContainer {
     this.gridSize = options.gridSize || 10;
     this.gridColor = options.gridColor || "#ffffff";
     this.pixelType = options.pixelType || "square";
+    this.filterType = options.filterType || "none";
     this.canvasFirstData = null;
 
     const canvas = document.createElement("canvas");
@@ -32,17 +34,19 @@ export default class CanvasContainer {
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext("2d");
+
     if (ctx) ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
     this.render($container, canvas);
 
     if (this.pixelType === "square") {
-      drawCanvas(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
+      drawCanvas(canvas, image, this.pixelSize, this.gridSize, this.gridColor, this.filterType);
     } else if (this.pixelType === "circle") {
-      drawCanvasCircle(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
+      drawCanvasCircle(canvas, image, this.pixelSize, this.gridSize, this.gridColor, this.filterType);
     } else if (this.pixelType === "original") {
-      drawCanvasOriginal(canvas, image);
+      drawCanvasOriginal(canvas, image, this.filterType);
     } else if (this.pixelType === "roundsquare") {
-      drawCanvasRoundSquare(canvas, image, this.pixelSize, this.gridSize, this.gridColor);
+      drawCanvasRoundSquare(canvas, image, this.pixelSize, this.gridSize, this.gridColor, this.filterType);
     }
     if (ctx) this.canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 

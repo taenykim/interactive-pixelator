@@ -1,1 +1,1 @@
-export declare const drawCanvasOriginal: (canvas: HTMLCanvasElement, image: HTMLImageElement) => void;
+export declare const drawCanvasOriginal: (canvas: HTMLCanvasElement, image: HTMLImageElement, filterType: string) => void;

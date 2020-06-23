@@ -4,7 +4,7 @@ import { averageLastPixelColor } from "./averageLastPixelColor";
 
 const dataOffset = 4; // we can set how many pixels to skip
 
-export const drawCanvasRoundSquare = (canvas: HTMLCanvasElement, image: HTMLImageElement, pixelSize: number, gridSize: number, gridColor: string) => {
+export const drawCanvasRoundSquare = (canvas: HTMLCanvasElement, image: HTMLImageElement, pixelSize: number, gridSize: number, gridColor: string, filterType: string) => {
   gridColor = gridColor || "#000000";
   const ctx = canvas.getContext("2d");
   const tileSize = pixelSize;
@@ -23,9 +23,20 @@ export const drawCanvasRoundSquare = (canvas: HTMLCanvasElement, image: HTMLImag
         else average = averageColor(r, c, ctx, tileSize, dataOffset);
       }
       const rgb = average;
-      const red = rgb ? rgb.r : 0;
-      const green = rgb ? rgb.g : 0;
-      const blue = rgb ? rgb.b : 0;
+      let red = rgb ? rgb.r : 0;
+      let green = rgb ? rgb.g : 0;
+      let blue = rgb ? rgb.b : 0;
+
+      if (filterType === "invert") {
+        red = 255 - red;
+        green = 255 - green;
+        blue = 255 - blue;
+      } else if (filterType === "grayscale") {
+        const gray = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+        red = gray;
+        green = gray;
+        blue = gray;
+      }
 
       const trueRow = c * tileSize;
       const trueCol = r * tileSize;
