@@ -48,7 +48,7 @@
 </tr>
 <tr>
 <td align="center"><strong>Change filter</strong></td>
-<td align="center"><strong style="color:blue;">coming soon</strong></td>
+<td style="color:blue;" align="center"><strong >coming soon</strong></td>
 </tr>
 <tr>
 <td align="center">
