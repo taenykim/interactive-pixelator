@@ -106,3 +106,8 @@
 #pixeltype-radio-container {
   text-align: initial;
 }
+
+#main {
+  display: flex;
+  flex-direction: column;
+}

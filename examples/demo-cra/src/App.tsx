@@ -90,7 +90,18 @@ const App = () => {
 
   return (
     <div>
-      <div className="App">Demo(PC)</div>
+      <div id="main" className="App">
+        <div style={{ fontSize: "40px" }}>Interactive Pixelator</div>
+        <div style={{ fontSize: "22px" }}>
+          <a href="https://github.com/taenykim/interactive-pixelator" target="_blank">
+            github
+          </a>{" "}
+          /{" "}
+          <a href="https://www.npmjs.com/package/interactive-pixelator" target="_blank">
+            npm
+          </a>
+        </div>
+      </div>
       <div className="App">
         <div className="controller">
           color
