@@ -89,8 +89,19 @@
   height: 300px;
   z-index: 10;
   background-color: azure;
-  border: 2px solid darkcyan;
+  border: 2px solid rgb(0, 139, 139);
   text-align: center;
+}
+
+.contoller-hide-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  z-index: 10;
+  background: rgba(0, 139, 139, 0.5);
 }
 
 #color {

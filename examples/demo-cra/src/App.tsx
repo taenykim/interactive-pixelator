@@ -21,6 +21,8 @@ const App = () => {
   const [pixelType2, setPixelType2] = useState("square");
   const [filterType2, setFilterType2] = useState("none");
   const [imageSrc, setImageSrc] = useState("");
+  const [controllerState1, setControllerState1] = useState(true);
+  const [controllerState2, setControllerState2] = useState(true);
 
   const updatePixelSize1 = (e: any) => {
     setPixelSize1(e.target.value);
@@ -79,6 +81,26 @@ const App = () => {
     link.click();
   };
 
+  const hideButtonHandler = (where: number) => {
+    const controller = document.getElementById(`controller${where}`);
+    if (where === 1) {
+      if (controller && controllerState1) {
+        controller.style.display = `none`;
+      } else if (controller && !controllerState1) {
+        controller.style.display = `flex`;
+      }
+      setControllerState1(!controllerState1);
+    } else if (where === 2) {
+      if (controller && controllerState2) {
+        controller.style.display = `none`;
+      } else if (controller && !controllerState2) {
+        controller.style.display = `flex`;
+      }
+      setControllerState2(!controllerState2);
+    }
+    console.log(controller);
+  };
+
   useEffect(() => {
     new Pixelator("upload-wrapper2", imageSrc, { pixelSize: pixelSize2, gridSize: gridSize2, gridColor: gridColor2, pixelType: pixelType2, filterType: filterType2 });
   }, [imageSrc]);
@@ -103,7 +125,10 @@ const App = () => {
         </div>
       </div>
       <div className="App">
-        <div className="controller">
+        <button className="contoller-hide-button" onClick={() => hideButtonHandler(1)}>
+          {controllerState1 ? `hide` : `show`}
+        </button>
+        <div id={`controller${1}`} className="controller">
           color
           <Color />
           pixel size
@@ -121,7 +146,10 @@ const App = () => {
         <div id="upload-wrapper"></div>
       </div>
       <div className="App">
-        <div className="controller">
+        <button className="contoller-hide-button" onClick={() => hideButtonHandler(2)}>
+          {controllerState2 ? `hide` : `show`}
+        </button>
+        <div id={`controller${2}`} className="controller">
           color
           <Color />
           pixel size
