@@ -113,7 +113,6 @@ const App = () => {
   return (
     <div>
       <div id="main" className="App">
-        <div style={{ fontSize: "40px" }}>Interactive Pixelator</div>
         <div style={{ fontSize: "22px" }}>
           <a href="https://github.com/taenykim/interactive-pixelator" target="_blank">
             github
@@ -123,6 +122,8 @@ const App = () => {
             npm
           </a>
         </div>
+        <div style={{ fontSize: "40px" }}>Interactive Pixelator</div>
+        <div style={{ fontSize: "16px" }}>🔽 scroll please ! 🔽</div>
       </div>
       <div className="App">
         <button className="contoller-hide-button" onClick={() => hideButtonHandler(1)}>
