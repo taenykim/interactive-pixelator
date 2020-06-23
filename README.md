@@ -23,7 +23,7 @@
 <img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/pixelsize1.gif"/></td>
 </tr>
 <tr>
-<td align="center"><strong>Chnage Pixel type</strong></td>
+<td align="center"><strong>Change Pixel type</strong></td>
 <td align="center"><strong>Change Grid size</strong></td>
 </tr>
 <tr>
@@ -35,7 +35,7 @@
 </td>
 </tr>
 <tr>
-<td align="center"><strong>Chnage Grid color</strong></td>
+<td align="center"><strong>Change Grid color</strong></td>
 <td align="center"><strong>Draw freely</strong></td>
 </tr>
 <tr>
@@ -44,6 +44,17 @@
 </td>
 <td align="center">
 <img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/drawing1.gif">
+</td>
+</tr>
+<tr>
+<td align="center"><strong>Change filter</strong></td>
+<td align="center"><strong>x</strong></td>
+</tr>
+<tr>
+<td align="center">
+<img width='200px' src="https://raw.githubusercontent.com/taenykim/interactive-pixelator/master/images/filter1.gif">
+</td>
+<td align="center">
 </td>
 </tr>
 </table>
@@ -71,7 +82,7 @@ $ npm i interactive-pixelator
 ```typescript
 import { Pixelator } from "interactive-pixelator";
 
-new Pixelator("DOM-element-id", "image URL", pixelSize, gridSize, gridColor, pixelType);
+new Pixelator("DOM-element-id", "image URL", { pixelSize: number, gridSize: number, gridColor: string, pixelType: string, filterType: string });
 ```
 
 ## 🏎 Demo play
@@ -87,4 +98,6 @@ $ npm start
 
 ## ✏️ And..
 
-**This project is incomplete, yet. If you came in by chance, please give me a lot of advice and support.**
+**This project is in progress.**
+
+**please give me a lot of advice and support.**

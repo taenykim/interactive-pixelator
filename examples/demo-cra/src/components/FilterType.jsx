@@ -20,8 +20,8 @@ const FilterType = ({ id, filterType, updateFilterType }) => {
         <input type="radio" id={`radio-invert` + id} value="invert" name={`filterType` + id} onChange={() => updateFilterType("invert")} />
         <label htmlFor={`radio-invert` + id}>invert</label>
       </div>
-      <input type="radio" id={`radio-filter-none` + id} value="filter-none" name={`filterType` + id} onChange={() => updateFilterType("none")} />
-      <label htmlFor={`radio-filter-none` + id}>none</label>
+      <input type="radio" id={`radio-none` + id} value="none" name={`filterType` + id} onChange={() => updateFilterType("none")} />
+      <label htmlFor={`radio-none` + id}>none</label>
     </div>
   );
 };
