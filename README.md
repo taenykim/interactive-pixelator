@@ -48,7 +48,7 @@
 </tr>
 <tr>
 <td align="center"><strong>Change filter</strong></td>
-<td align="center"><strong>x</strong></td>
+<td align="center"><strong style="color:blue;">coming soon</strong></td>
 </tr>
 <tr>
 <td align="center">
@@ -82,7 +82,13 @@ $ npm i interactive-pixelator
 ```typescript
 import { Pixelator } from "interactive-pixelator";
 
-new Pixelator("DOM-element-id", "image URL", { pixelSize: number, gridSize: number, gridColor: string, pixelType: string, filterType: string });
+new Pixelator("DOM-element-id", "image URL", {
+    // options
+    pixelSize: number,
+    gridSize: number,
+    gridColor: string,
+    pixelType: string,
+    filterType: string }); //prettier-ignore
 ```
 
 ## 🏎 Demo play
