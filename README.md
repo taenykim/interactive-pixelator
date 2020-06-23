@@ -84,11 +84,14 @@ import { Pixelator } from "interactive-pixelator";
 
 new Pixelator("DOM-element-id", "image URL", {
     // options
-    pixelSize: number,
-    gridSize: number,
-    gridColor: string,
-    pixelType: string,
-    filterType: string }); //prettier-ignore
+    pixelSize: number, // 1~ (default:100)
+    gridSize: number, // 0~ (default:10)
+    gridColor: string, // #000000 (default:#ffffff)
+    pixelType: string, // [square(default), roundsquare, circle, original]
+    filterType: string // [none(default), grayscale, invert]
+    });
+
+//prettier-ignore
 ```
 
 ## 🏎 Demo play
