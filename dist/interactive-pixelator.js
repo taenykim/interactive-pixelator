@@ -53,7 +53,7 @@ var averageLastPixelColor = function (row, column, ctx, tileSize, dataOffset) {
 
 var dataOffset = 4; // we can set how many pixels to skip
 var borderSize = 0;
-var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor) {
+var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor, filterType) {
     gridColor = gridColor || "#000000";
     var ctx = canvas.getContext("2d");
     canvas.width = canvas.width - borderSize;
@@ -104,10 +104,25 @@ var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor) {
                                 pixels[position + 3] = 255;
                             }
                             else {
-                                pixels[position + 0] = red;
-                                pixels[position + 1] = green;
-                                pixels[position + 2] = blue;
-                                pixels[position + 3] = 255;
+                                if (filterType === "invert") {
+                                    pixels[position + 0] = 255 - red;
+                                    pixels[position + 1] = 255 - green;
+                                    pixels[position + 2] = 255 - blue;
+                                    pixels[position + 3] = 255;
+                                }
+                                else if (filterType === "grayscale") {
+                                    var gray = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                                    pixels[position + 0] = gray;
+                                    pixels[position + 1] = gray;
+                                    pixels[position + 2] = gray;
+                                    pixels[position + 3] = 255;
+                                }
+                                else {
+                                    pixels[position + 0] = red;
+                                    pixels[position + 1] = green;
+                                    pixels[position + 2] = blue;
+                                    pixels[position + 3] = 255;
+                                }
                             }
                         }
                     }
@@ -132,10 +147,25 @@ var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor) {
                                 pixels[position + 3] = 255;
                             }
                             else {
-                                pixels[position + 0] = red;
-                                pixels[position + 1] = green;
-                                pixels[position + 2] = blue;
-                                pixels[position + 3] = 255;
+                                if (filterType === "invert") {
+                                    pixels[position + 0] = 255 - red;
+                                    pixels[position + 1] = 255 - green;
+                                    pixels[position + 2] = 255 - blue;
+                                    pixels[position + 3] = 255;
+                                }
+                                else if (filterType === "grayscale") {
+                                    var gray = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                                    pixels[position + 0] = gray;
+                                    pixels[position + 1] = gray;
+                                    pixels[position + 2] = gray;
+                                    pixels[position + 3] = 255;
+                                }
+                                else {
+                                    pixels[position + 0] = red;
+                                    pixels[position + 1] = green;
+                                    pixels[position + 2] = blue;
+                                    pixels[position + 3] = 255;
+                                }
                             }
                         }
                     }
@@ -149,7 +179,7 @@ var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor) {
 };
 
 var dataOffset$1 = 4; // we can set how many pixels to skip
-var drawCanvasCircle = function (canvas, image, pixelSize, gridSize, gridColor) {
+var drawCanvasCircle = function (canvas, image, pixelSize, gridSize, gridColor, filterType) {
     gridColor = gridColor || "#000000";
     var ctx = canvas.getContext("2d");
     var tileSize = pixelSize;
@@ -173,6 +203,17 @@ var drawCanvasCircle = function (canvas, image, pixelSize, gridSize, gridColor) 
             var red = rgb ? rgb.r : 0;
             var green = rgb ? rgb.g : 0;
             var blue = rgb ? rgb.b : 0;
+            if (filterType === "invert") {
+                red = 255 - red;
+                green = 255 - green;
+                blue = 255 - blue;
+            }
+            else if (filterType === "grayscale") {
+                var gray = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                red = gray;
+                green = gray;
+                blue = gray;
+            }
             var trueRow = c * tileSize;
             var trueCol = r * tileSize;
             var arcCenterX = trueRow;
@@ -189,16 +230,22 @@ var drawCanvasCircle = function (canvas, image, pixelSize, gridSize, gridColor) 
     }
 };
 
-var drawCanvasOriginal = function (canvas, image) {
+var drawCanvasOriginal = function (canvas, image, filterType) {
     var ctx = canvas.getContext("2d");
     if (ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (filterType === "grayscale") {
+            ctx.filter = "grayscale(100%)";
+        }
+        else if ((filterType = "invert")) {
+            ctx.filter = "invert(100%)";
+        }
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     }
 };
 
 var dataOffset$2 = 4; // we can set how many pixels to skip
-var drawCanvasRoundSquare = function (canvas, image, pixelSize, gridSize, gridColor) {
+var drawCanvasRoundSquare = function (canvas, image, pixelSize, gridSize, gridColor, filterType) {
     gridColor = gridColor || "#000000";
     var ctx = canvas.getContext("2d");
     var tileSize = pixelSize;
@@ -222,6 +269,17 @@ var drawCanvasRoundSquare = function (canvas, image, pixelSize, gridSize, gridCo
             var red = rgb ? rgb.r : 0;
             var green = rgb ? rgb.g : 0;
             var blue = rgb ? rgb.b : 0;
+            if (filterType === "invert") {
+                red = 255 - red;
+                green = 255 - green;
+                blue = 255 - blue;
+            }
+            else if (filterType === "grayscale") {
+                var gray = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                red = gray;
+                green = gray;
+                blue = gray;
+            }
             var trueRow = c * tileSize;
             var trueCol = r * tileSize;
             if (ctx) {
@@ -277,16 +335,12 @@ var resizeImage = function (image, $target) {
     var MAX_HEIGHT = $target.getBoundingClientRect().height - 1;
     var width = image.width;
     var height = image.height;
-    // 아트보드 가로세로 비율
     var artboardRatio = MAX_WIDTH / MAX_HEIGHT;
-    // 이미지 가로세로 비율
     var imageRatio = width / height;
-    // 아트보드 비율이 이미지 비율보다 크면 이미지의 세로를 아트보드의 세로에 맞춤
     if (artboardRatio > imageRatio) {
         width *= MAX_HEIGHT / height;
         height = MAX_HEIGHT;
     }
-    // 이미지 비율이 아트보드 비율보다 크면 이미지의 가로를 아트보드의 가로에 맞춤
     else {
         height *= MAX_WIDTH / width;
         width = MAX_WIDTH;
@@ -412,12 +466,13 @@ var drawHoverCanvas = function (canvas, pixelSize, gridSize, y, x, hoverColor) {
 var CanvasContainer = /** @class */ (function () {
     function CanvasContainer(_a) {
         var _this = this;
-        var name = _a.name, $container = _a.$container, image = _a.image, pixelSize = _a.pixelSize, gridSize = _a.gridSize, gridColor = _a.gridColor, pixelType = _a.pixelType;
+        var name = _a.name, $container = _a.$container, image = _a.image, options = _a.options;
         this.isDrawing = false;
-        this.pixelSize = pixelSize;
-        this.gridSize = gridSize;
-        this.gridColor = gridColor;
-        this.pixelType = pixelType;
+        this.pixelSize = options.pixelSize || 100;
+        this.gridSize = options.gridSize || 10;
+        this.gridColor = options.gridColor || "#ffffff";
+        this.pixelType = options.pixelType || "square";
+        this.filterType = options.filterType || "none";
         this.canvasFirstData = null;
         var canvas = document.createElement("canvas");
         this.canvas = canvas;
@@ -430,17 +485,17 @@ var CanvasContainer = /** @class */ (function () {
         if (ctx)
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         this.render($container, canvas);
-        if (pixelType === "square") {
-            drawCanvas(canvas, image, pixelSize, gridSize, gridColor);
+        if (this.pixelType === "square") {
+            drawCanvas(canvas, image, this.pixelSize, this.gridSize, this.gridColor, this.filterType);
         }
-        else if (pixelType === "circle") {
-            drawCanvasCircle(canvas, image, pixelSize, gridSize, gridColor);
+        else if (this.pixelType === "circle") {
+            drawCanvasCircle(canvas, image, this.pixelSize, this.gridSize, this.gridColor, this.filterType);
         }
-        else if (pixelType === "original") {
-            drawCanvasOriginal(canvas, image);
+        else if (this.pixelType === "original") {
+            drawCanvasOriginal(canvas, image, this.filterType);
         }
-        else if (pixelType === "roundsquare") {
-            drawCanvasRoundSquare(canvas, image, pixelSize, gridSize, gridColor);
+        else if (this.pixelType === "roundsquare") {
+            drawCanvasRoundSquare(canvas, image, this.pixelSize, this.gridSize, this.gridColor, this.filterType);
         }
         if (ctx)
             this.canvasFirstData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -492,9 +547,10 @@ var CanvasContainer = /** @class */ (function () {
     return CanvasContainer;
 }());
 
-var PixelImage = /** @class */ (function () {
-    function PixelImage(name, imageSrc, pixelSize, gridSize, gridColor, pixelType) {
+var Pixelator = /** @class */ (function () {
+    function Pixelator(name, imageSrc, options) {
         var _this = this;
+        if (options === void 0) { options = {}; }
         var $container = document.getElementById("" + name);
         this.$container = $container;
         this.$target = null;
@@ -507,14 +563,11 @@ var PixelImage = /** @class */ (function () {
                     name: name,
                     $container: $container,
                     image: image,
-                    pixelSize: pixelSize,
-                    gridSize: gridSize,
-                    gridColor: gridColor,
-                    pixelType: pixelType,
+                    options: options,
                 });
             });
     }
-    return PixelImage;
+    return Pixelator;
 }());
 
-export { PixelImage as Pixelator };
+export { Pixelator };

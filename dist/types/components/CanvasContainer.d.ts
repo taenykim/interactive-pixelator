@@ -1,19 +1,18 @@
+import { PixelatorOptions } from "../types";
 export default class CanvasContainer {
     isDrawing: boolean;
     pixelSize: number;
     gridSize: number;
     gridColor: string;
     pixelType: string;
+    filterType: string;
     canvas: HTMLCanvasElement;
     canvasFirstData: ImageData | null;
-    constructor({ name, $container, image, pixelSize, gridSize, gridColor, pixelType, }: {
+    constructor({ name, $container, image, options }: {
         name: string;
         $container: HTMLElement;
         image: HTMLImageElement;
-        pixelSize: number;
-        gridSize: number;
-        gridColor: string;
-        pixelType: string;
+        options: PixelatorOptions;
     });
     render($container: HTMLElement, canvas: HTMLCanvasElement): void;
     mousedownHandler(e: MouseEvent): void;

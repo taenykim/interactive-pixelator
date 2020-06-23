@@ -1,6 +1,6 @@
 {
   "name": "interactive-pixelator",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "upload image and make pixel art",
   "main": "dist/interactive-pixelator.js",
   "module": "dist/interactive-pixelator.js",
@@ -24,7 +24,11 @@
     "pixel",
     "art",
     "canvas",
-    "imapge-processing"
+    "image-processing",
+    "javascript",
+    "typescript",
+    "web",
+    "color"
   ],
   "repository": {
     "type": "git",

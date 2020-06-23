@@ -3,7 +3,7 @@ import { averageLastPixelColor } from "./averageLastPixelColor";
 const dataOffset = 4; // we can set how many pixels to skip
 const borderSize = 0;
 
-export const drawCanvas = (canvas: HTMLCanvasElement, image: HTMLImageElement, pixelSize: number, gridSize: number, gridColor: string) => {
+export const drawCanvas = (canvas: HTMLCanvasElement, image: HTMLImageElement, pixelSize: number, gridSize: number, gridColor: string, filterType: string) => {
   gridColor = gridColor || "#000000";
   const ctx = canvas.getContext("2d");
   canvas.width = canvas.width - borderSize;
@@ -57,10 +57,23 @@ export const drawCanvas = (canvas: HTMLCanvasElement, image: HTMLImageElement, p
                 pixels[position + 2] = gridBlue;
                 pixels[position + 3] = 255;
               } else {
-                pixels[position + 0] = red;
-                pixels[position + 1] = green;
-                pixels[position + 2] = blue;
-                pixels[position + 3] = 255;
+                if (filterType === "invert") {
+                  pixels[position + 0] = 255 - red;
+                  pixels[position + 1] = 255 - green;
+                  pixels[position + 2] = 255 - blue;
+                  pixels[position + 3] = 255;
+                } else if (filterType === "grayscale") {
+                  const gray = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                  pixels[position + 0] = gray;
+                  pixels[position + 1] = gray;
+                  pixels[position + 2] = gray;
+                  pixels[position + 3] = 255;
+                } else {
+                  pixels[position + 0] = red;
+                  pixels[position + 1] = green;
+                  pixels[position + 2] = blue;
+                  pixels[position + 3] = 255;
+                }
               }
             }
           }
@@ -86,10 +99,23 @@ export const drawCanvas = (canvas: HTMLCanvasElement, image: HTMLImageElement, p
                 pixels[position + 2] = gridBlue;
                 pixels[position + 3] = 255;
               } else {
-                pixels[position + 0] = red;
-                pixels[position + 1] = green;
-                pixels[position + 2] = blue;
-                pixels[position + 3] = 255;
+                if (filterType === "invert") {
+                  pixels[position + 0] = 255 - red;
+                  pixels[position + 1] = 255 - green;
+                  pixels[position + 2] = 255 - blue;
+                  pixels[position + 3] = 255;
+                } else if (filterType === "grayscale") {
+                  const gray = 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+                  pixels[position + 0] = gray;
+                  pixels[position + 1] = gray;
+                  pixels[position + 2] = gray;
+                  pixels[position + 3] = 255;
+                } else {
+                  pixels[position + 0] = red;
+                  pixels[position + 1] = green;
+                  pixels[position + 2] = blue;
+                  pixels[position + 3] = 255;
+                }
               }
             }
           }
