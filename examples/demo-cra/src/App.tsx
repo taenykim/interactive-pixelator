@@ -6,7 +6,7 @@ import Grid from "./components/Grid";
 import GridColor from "./components/GridColor";
 import PixelType from "./components/PixelType";
 import DownloadButton from "./components/DownloadButton";
-import { Pixelator } from "interactive-pixelator";
+import { Pixelator } from "../../../../interactive-pixelator";
 
 const App = () => {
   const [pixelSize1, setPixelSize1] = useState(100);
