@@ -51,7 +51,7 @@ var averageLastPixelColor = function (row, column, ctx, tileSize, dataOffset) {
     return rgb;
 };
 
-var dataOffset = 4; // we can set how many pixels to skip
+var dataOffset$4 = 4; // we can set how many pixels to skip
 var borderSize = 0;
 var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor, filterType) {
     gridColor = gridColor || "#000000";
@@ -76,9 +76,9 @@ var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor, filter
             var average = void 0;
             if (ctx) {
                 if (c === numTileCols - 1 || r === numTileRows - 1)
-                    average = averageLastPixelColor(r, c, ctx, tileSize, dataOffset);
+                    average = averageLastPixelColor(r, c, ctx, tileSize, dataOffset$4);
                 else
-                    average = averageColor(r, c, ctx, tileSize, dataOffset);
+                    average = averageColor(r, c, ctx, tileSize, dataOffset$4);
             }
             var rgb = average;
             var red = rgb ? rgb.r : 0;
@@ -93,7 +93,7 @@ var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor, filter
                         var trueCol = c * tileSize + tc;
                         var imageDataWidth = imageData ? imageData.width : 0;
                         // Calculate the position of the current pixel in the array
-                        var position = trueRow * (imageDataWidth * dataOffset) + trueCol * dataOffset;
+                        var position = trueRow * (imageDataWidth * dataOffset$4) + trueCol * dataOffset$4;
                         // console.log("position", position);
                         // Assign the colour to each pixel
                         if (pixels) {
@@ -136,7 +136,7 @@ var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor, filter
                         var trueCol = c * tileSize + tc;
                         var imageDataWidth = imageData ? imageData.width : 0;
                         // Calculate the position of the current pixel in the array
-                        var position = trueRow * (imageDataWidth * dataOffset) + trueCol * dataOffset;
+                        var position = trueRow * (imageDataWidth * dataOffset$4) + trueCol * dataOffset$4;
                         // console.log("position", position);
                         // Assign the colour to each pixel
                         if (pixels) {
@@ -178,7 +178,7 @@ var drawCanvas = function (canvas, image, pixelSize, gridSize, gridColor, filter
         ctx.putImageData(imageData, 0, 0);
 };
 
-var dataOffset$1 = 4; // we can set how many pixels to skip
+var dataOffset$3 = 4; // we can set how many pixels to skip
 var drawCanvasCircle = function (canvas, image, pixelSize, gridSize, gridColor, filterType) {
     gridColor = gridColor || "#000000";
     var ctx = canvas.getContext("2d");
@@ -195,9 +195,9 @@ var drawCanvasCircle = function (canvas, image, pixelSize, gridSize, gridColor, 
             var average = void 0;
             if (ctx) {
                 if (c === numTileCols - 1 || r === numTileRows - 1)
-                    average = averageLastPixelColor(r, c, ctx, tileSize, dataOffset$1);
+                    average = averageLastPixelColor(r, c, ctx, tileSize, dataOffset$3);
                 else
-                    average = averageColor(r, c, ctx, tileSize, dataOffset$1);
+                    average = averageColor(r, c, ctx, tileSize, dataOffset$3);
             }
             var rgb = average;
             var red = rgb ? rgb.r : 0;
@@ -348,7 +348,7 @@ var resizeImage = function (image, $target) {
     return [width, height];
 };
 
-var dataOffset$3 = 4; // we can set how many pixels to skip
+var dataOffset$1 = 4; // we can set how many pixels to skip
 var drawMousemoveCanvas = function (canvas, pixelSize, gridSize, y, x, gridColor) {
     var tileSize = pixelSize;
     var numTileCols = Math.ceil(canvas.width / tileSize);
@@ -369,7 +369,7 @@ var drawMousemoveCanvas = function (canvas, pixelSize, gridSize, y, x, gridColor
                 var trueCol = colIndex * tileSize + tc;
                 // Calculate the position of the current pixel in the array
                 var imageDataWidth = imageData ? imageData.width : 0;
-                var position = trueRow * (imageDataWidth * dataOffset$3) + trueCol * dataOffset$3;
+                var position = trueRow * (imageDataWidth * dataOffset$1) + trueCol * dataOffset$1;
                 // Assign the colour to each pixel
                 if (pixels) {
                     pixels[position + 0] = gridRed;
@@ -388,7 +388,7 @@ var drawMousemoveCanvas = function (canvas, pixelSize, gridSize, y, x, gridColor
                 var trueRow = rowIndex * tileSize + tr;
                 var trueCol = colIndex * tileSize + tc;
                 // Calculate the position of the current pixel in the array
-                var position = trueRow * (canvas.width * dataOffset$3) + trueCol * dataOffset$3;
+                var position = trueRow * (canvas.width * dataOffset$1) + trueCol * dataOffset$1;
                 // Assign the colour to each pixel
                 if (pixels) {
                     pixels[position + 0] = gridRed;
@@ -403,7 +403,7 @@ var drawMousemoveCanvas = function (canvas, pixelSize, gridSize, y, x, gridColor
     return imageData;
 };
 
-var dataOffset$4 = 4; // we can set how many pixels to skip
+var dataOffset = 4; // we can set how many pixels to skip
 var drawHoverCanvas = function (canvas, pixelSize, gridSize, y, x, hoverColor) {
     var tileSize = pixelSize;
     var numTileCols = Math.ceil(canvas.width / tileSize);
@@ -425,7 +425,7 @@ var drawHoverCanvas = function (canvas, pixelSize, gridSize, y, x, hoverColor) {
                 var trueCol = colIndex * tileSize + tc;
                 // Calculate the position of the current pixel in the array
                 var imageDataWidth = imageData ? imageData.width : 0;
-                var position = trueRow * (imageDataWidth * dataOffset$4) + trueCol * dataOffset$4;
+                var position = trueRow * (imageDataWidth * dataOffset) + trueCol * dataOffset;
                 // Assign the colour to each pixel
                 if (pixels) {
                     if (tc < grid || tr < grid || tc > canvas.width - colIndex * tileSize - grid || tr > canvas.height - rowIndex * tileSize - grid) {
@@ -446,7 +446,7 @@ var drawHoverCanvas = function (canvas, pixelSize, gridSize, y, x, hoverColor) {
                 var trueRow = rowIndex * tileSize + tr;
                 var trueCol = colIndex * tileSize + tc;
                 // Calculate the position of the current pixel in the array
-                var position = trueRow * (canvas.width * dataOffset$4) + trueCol * dataOffset$4;
+                var position = trueRow * (canvas.width * dataOffset) + trueCol * dataOffset;
                 // Assign the colour to each pixel
                 if (pixels) {
                     if (tc < grid || tr < grid || tr > canvas.height - rowIndex * tileSize - grid) {
